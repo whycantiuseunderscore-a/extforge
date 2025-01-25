@@ -88,4 +88,9 @@
         box-sizing: border-box;
         overflow: auto;
     }
+
+    :global(.dark) .body {
+        background: #222;
+        color: #fff;
+    }
 </style>

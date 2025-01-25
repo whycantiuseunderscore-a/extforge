@@ -172,9 +172,21 @@
     :global(.blocklyFlyoutButton:active .blocklyFlyoutButtonBackground) {
         fill: #0002 !important;
     }
-
     :global(.blocklyFlyoutButton .blocklyText) {
         fill: #575e75 !important;
+    }
+
+    :global(.dark .blocklyFlyoutButtonBackground) {
+        stroke: #b3bcdb;
+    }
+    :global(.dark .blocklyFlyoutButton:hover .blocklyFlyoutButtonBackground) {
+        fill: #fff1 !important;
+    }
+    :global(.dark .blocklyFlyoutButton:active .blocklyFlyoutButtonBackground) {
+        fill: #fff2 !important;
+    }
+    :global(.dark .blocklyFlyoutButton .blocklyText) {
+        fill: #b3bcdb !important;
     }
 
     :global(.blocklyTreeSeparator) {
