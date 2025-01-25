@@ -1,0 +1,135 @@
+
+<xml>
+    <!--
+    <category name="Generic" colour="#fff">
+        <block type="generic_number" />
+        <block type="generic_text" />
+        <block type="generic_boolean" />
+    </category>
+    -->
+    <category name="Events" colour="#fc6">
+        <block type="events_loaded" />
+        <sep gap="48"></sep>
+        <block type="events_regbroadcast" />
+        <block type="events_broadcast" />
+        <block type="events_broadcastw" />
+    </category>
+    <category name="Control" colour="#fb6">
+        <block type="control_wait" />
+        <sep gap="48"></sep>
+        <block type="control_if" />
+        <block type="control_if">
+            <mutation else="1" />
+        </block>
+        <block type="control_while" />
+        <sep gap="48"></sep>
+        <block type="control_return" />
+        <block type="control_inline">
+            <statement name="BLOCKS">
+                <block type="control_return" />
+            </statement>
+        </block>
+    </category>
+    <category name="Math" colour="#6d6">
+        <block type="math_number" />
+        <block type="math_boolean" />
+        <sep gap="48"></sep>
+        <block type="math_add" />
+        <block type="math_sub" />
+        <block type="math_mul" />
+        <block type="math_div" />
+        <block type="math_pow" />
+        <block type="math_log" />
+        <sep gap="48"></sep>
+        <block type="math_const" />
+        <sep gap="48"></sep>
+        <block type="math_true" />
+        <block type="math_false" />
+        <block type="math_randombool" />
+        <sep gap="48"></sep>
+        <block type="math_and" />
+        <block type="math_xor" />
+        <block type="math_or" />
+        <block type="math_not" />
+    </category>
+    <category name="Strings" colour="#6db">
+        <block type="strings_string" />
+        <sep gap="48"></sep>
+        <block type="strings_join">
+            <mutation items="2" />
+        </block>
+        <block type="strings_repeat" />
+        <block type="strings_substring" />
+        <block type="strings_split" />
+        <block type="strings_length" />
+        <sep gap="48"></sep>
+        <block type="strings_log" />
+    </category>
+    <category name="Inputs" colour="#69d">
+        <block type="inputs_keypress" />
+        <block type="inputs_keyspressed" />
+        <sep gap="48"></sep>
+        <block type="inputs_mousex" />
+        <block type="inputs_mousey" />
+    </category>
+    <category name="Variables" colour="#f96" custom="variables">
+        <!-- resources/categories/variables.js -->
+    </category>
+    <category name="Lists" colour="#f76">
+        <block type="lists_create">
+            <mutation items="3" />
+        </block>
+        <block type="lists_create">
+            <mutation items="0" />
+        </block>
+        <sep gap="48"></sep>
+        <block type="lists_get" />
+        <block type="lists_set" />
+        <sep gap="48"></sep>
+        <block type="lists_length" />
+        <block type="lists_join" />
+        <sep gap="48"></sep>
+        <block type="lists_foreach" />
+        <block type="lists_foreachindex" />
+        <block type="lists_foreachvalue" />
+    </category>
+    <!--
+    <category name="Functions" colour="#b6f">
+    
+    </category>
+    -->
+
+    <sep />
+
+    <!--
+    <category name="Sprites" colour="#3cc">
+    
+    </category>
+    <category name="Motion" colour="#39c">
+    
+    </category>
+    <category name="Looks" colour="#94c">
+    
+    </category>
+    <category name="Sound" colour="#c4c">
+    
+    </category>
+    <category name="Clones" colour="#c94">
+    
+    </category>
+    -->
+    <category name="Runtime" colour="#888">
+        <block type="runtime_onstart" />
+        <block type="runtime_onstop" />
+        <sep gap="48"></sep>
+        <block type="runtime_start" />
+        <block type="runtime_stop" />
+        <block type="runtime_running" />
+        <sep gap="48"></sep>
+        <block type="runtime_turboset" />
+        <block type="runtime_turboget" />
+        <sep gap="48"></sep>
+        <block type="runtime_frameset" />
+        <block type="runtime_frameget" />
+    </category>
+</xml>
