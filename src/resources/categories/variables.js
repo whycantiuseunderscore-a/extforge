@@ -36,6 +36,9 @@ export default (workspace) => {
             .setAttribute('callbackkey', 'variables_register'))
 
         if (window.variables && Object.keys(window.variables).length > 0) {
+            blockList.push(createExtendableElement('button')
+                .setAttribute('text', 'Remove Variable')
+                .setAttribute('callbackkey', 'variables_remove'))
             blockList.push(createExtendableElement('block')
                 .setAttribute('type', 'variables_get'));
             blockList.push(createExtendableElement('block')
