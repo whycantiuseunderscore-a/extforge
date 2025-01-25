@@ -1,6 +1,8 @@
 <script>
     import { onMount } from "svelte";
 
+    import ExitIcon from "$lib/images/nav/exit.svg"
+
     export let id = "unknown";
     export let title = "Unknown";
 
@@ -20,7 +22,7 @@
     <div class="inside">
         <div class="bar">
             <span class="title">{title}</span>
-            <button class="exit" on:click={data.toggle}>
+            <button class="exit" on:click={data.toggle} style={`background-image: url(${ExitIcon})`}>
         </div>
         <div class="body">
             <slot {data} />
@@ -71,13 +73,12 @@
 
     .exit {
         flex: 2em;
-        margin-right: .5em;
+        margin-right: 1em;
         width: 2rem;
         aspect-ratio: 1;
         border: none;
         padding: 0;
-        border-radius: 1rem;
-        background-color: #fff6;
+        background-color: #0000;
         cursor: pointer;
     }
 
