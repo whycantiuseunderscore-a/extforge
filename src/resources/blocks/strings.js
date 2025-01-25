@@ -194,7 +194,7 @@ function register() {
                 "type": "field_input",
                 "name": "TEXT",
                 "check": null,
-                "text": "apple",
+                "text": "hello world",
                 "acceptsBlocks": true
             }
         ],

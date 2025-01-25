@@ -30,14 +30,14 @@
     }
 
     button {
-        position: relative;
+        position: absolute;
 
         width: 100%;
         height: 2em;
 
         text-align: center;
 
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Noto Sans', sans-serif;
         font-weight: bold;
         font-size: 0.75rem;
         color: #000;

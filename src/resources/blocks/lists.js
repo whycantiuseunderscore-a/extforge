@@ -131,7 +131,7 @@ function register() {
                 "type": "field_input",
                 "name": "TEXT",
                 "check": "String",
-                "text": "",
+                "text": ",",
                 "acceptsBlocks": true
             }
         ],
@@ -142,6 +142,30 @@ function register() {
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
         const TEXT = javascriptGenerator.valueToCode(block, 'TEXT')
         const code = `(${INPUT}.join(${TEXT}))`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}concat`, {
+        message0: 'concat %1 with %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "LIST1",
+                "check": "List"
+            },
+            {
+                "type": "input_value",
+                "name": "LIST2",
+                "check": "List"
+            }
+        ],
+        inputsInline: true,
+        output: "List",
+        colour: categoryColor,
+    }, (block) => {
+        const LIST1 = javascriptGenerator.valueToCode(block, 'LIST1')
+        const LIST2 = javascriptGenerator.valueToCode(block, 'LIST2')
+        const code = `(${LIST1}.concat(${LIST2}))`;
         return [`${code}`, 0];
     })
 

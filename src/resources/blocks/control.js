@@ -1,7 +1,7 @@
-import { getTsBuildInfoEmitOutputFilePath } from 'typescript';
 import javascriptGenerator from '../javascriptGenerator';
 import registerBlock from '../register';
 import Blockly from 'blockly/core';
+import util from '../util';
 
 const categoryPrefix = 'control_';
 const categoryColor = '#fb6';
@@ -91,6 +91,38 @@ function register() {
     }, (block) => {
         const TIME = javascriptGenerator.valueToCode(block, 'TIME');
         const code = `await new Promise(resolve => setTimeout(() => resolve(), ${TIME} * 1000));`;
+        return `${code}\n`;
+    })
+    registerBlock(`${categoryPrefix}waitF`, {
+        message0: 'wait until next frame',
+        args0: [],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const v = "temp_"+util.randomHex(24)
+        const code = `await new Promise(${v} => { requestAnimationFrame(() => { ${v}() }) })`;
+        return `${code}\n`;
+    })
+    registerBlock(`${categoryPrefix}waitU`, {
+        message0: 'wait until %1',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "BOOL",
+                "check": "Boolean"
+            },
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const BOOL = javascriptGenerator.valueToCode(block, 'BOOL');
+        const v1 = "temp_"+util.randomHex(24)
+        const v2 = "temp_"+util.randomHex(24)
+        const code = `await new Promise(${v1} => {let ${v2} = () => false ? ${v1}() : requestAnimationFrame(${v2}); ${v2}()})`;
         return `${code}\n`;
     })
 

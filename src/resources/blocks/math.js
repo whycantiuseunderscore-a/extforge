@@ -340,6 +340,146 @@ function register() {
         const code = `(!${BOOL})`;
         return [`${code}`, 0];
     })
+    
+    registerBlock(`${categoryPrefix}equals`, {
+        message0: '%1 = %2',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": null,
+                "text": "foo",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_input",
+                "name": "Y",
+                "check": null,
+                "text": "bar",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X} == ${Y})`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}gte`, {
+        message0: '%1 >= %2',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "Y",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X} >= ${Y})`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}gt`, {
+        message0: '%1 > %2',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "Y",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X} > ${Y})`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}lt`, {
+        message0: '%1 < %2',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "Y",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X} < ${Y})`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}lte`, {
+        message0: '%1 <= %2',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "Y",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `(${X} <= ${Y})`;
+        return [`${code}`, 0];
+    })
 }
 
 export default register;

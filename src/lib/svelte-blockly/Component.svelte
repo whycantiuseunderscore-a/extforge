@@ -126,7 +126,7 @@
     }
 
     :global(.blocklyTreeLabel) {
-        font-family: "Montserrat";
+        font-family: "Noto Sans";
         font-weight: 500;
         font-size: 14px;
         margin-left: 16px;

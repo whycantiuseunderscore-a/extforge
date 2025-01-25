@@ -26,6 +26,7 @@
             <option value="null">Unknown</option>
             <option value="String">String</option>
             <option value="Number">Number</option>
+            <option value="Boolean">Boolean</option>
             <option value="List">List</option>
         </select>
         <button class="btn" on:click={() => {register(data)}}>Register</button>
@@ -49,7 +50,7 @@
         font-size: 1.5rem;
         border: #0004 solid 0.2rem;
         border-radius: 0.5rem;
-        font-family: "Montserrat";
+        font-family: "Noto Sans";
         font-weight: bold;
         padding: 0.2rem 0.5rem;
         margin: 0.5rem;

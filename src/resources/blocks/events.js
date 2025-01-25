@@ -25,6 +25,27 @@ function register() {
         return `${code}\n`;
     })
 
+    registerBlock(`${categoryPrefix}thread`, {
+        message0: 'new thread %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `(async () => { ${BLOCKS} })();`;
+        return `${code}\n`;
+    })
+
     //broadcasts
     registerBlock(`${categoryPrefix}regbroadcast`, {
         message0: 'when %1 broadcasted %2 %3',

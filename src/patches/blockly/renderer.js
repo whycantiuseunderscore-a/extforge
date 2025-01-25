@@ -13,7 +13,7 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
         super.init()
 
         this.FIELD_TEXT_FONTSIZE = 11
-        this.FIELD_TEXT_FONTFAMILY = "Montserrat"
+        this.FIELD_TEXT_FONTFAMILY = "Noto Sans"
 
         this.ADD_START_HATS = true
         
@@ -68,7 +68,7 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
             isDynamic: true,
             width(height) {
                 const halfHeight = height / 2;
-                const maxWidth = radius * 8;
+                const maxWidth = radius * 4;
                 return halfHeight > maxWidth ? maxWidth : halfHeight;
             },
             height(height) {

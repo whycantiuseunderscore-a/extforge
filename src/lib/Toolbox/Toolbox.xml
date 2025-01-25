@@ -10,12 +10,16 @@
     <category name="Events" colour="#fc6">
         <block type="events_loaded" />
         <sep gap="48"></sep>
+        <block type="events_thread" />
+        <sep gap="48"></sep>
         <block type="events_regbroadcast" />
         <block type="events_broadcast" />
         <block type="events_broadcastw" />
     </category>
     <category name="Control" colour="#fb6">
         <block type="control_wait" />
+        <block type="control_waitF" />
+        <block type="control_waitU" />
         <sep gap="48"></sep>
         <block type="control_if" />
         <block type="control_if">
@@ -51,6 +55,12 @@
         <block type="math_xor" />
         <block type="math_or" />
         <block type="math_not" />
+        <sep gap="48"></sep>
+        <block type="math_equals" />
+        <block type="math_gt" />
+        <block type="math_gte" />
+        <block type="math_lt" />
+        <block type="math_lte" />
     </category>
     <category name="Strings" colour="#6db">
         <block type="strings_string" />
@@ -84,10 +94,11 @@
         </block>
         <sep gap="48"></sep>
         <block type="lists_get" />
-        <block type="lists_set" />
-        <sep gap="48"></sep>
         <block type="lists_length" />
+        <sep gap="48"></sep>
+        <block type="lists_set" />
         <block type="lists_join" />
+        <block type="lists_concat" />
         <sep gap="48"></sep>
         <block type="lists_foreach" />
         <block type="lists_foreachindex" />
@@ -125,6 +136,7 @@
         <block type="runtime_start" />
         <block type="runtime_stop" />
         <block type="runtime_running" />
+        <block type="runtime_timer" />
         <sep gap="48"></sep>
         <block type="runtime_turboset" />
         <block type="runtime_turboget" />

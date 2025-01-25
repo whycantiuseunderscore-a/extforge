@@ -34,7 +34,7 @@
         flex-direction: row;
         align-items: center;
 
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Noto Sans', sans-serif;
         font-weight: bold;
         font-size: 0.75rem;
         color: #000;

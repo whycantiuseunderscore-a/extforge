@@ -139,6 +139,17 @@ function register() {
         const code = `Scratch.vm.runtime.frameLoop.setFramerate(${INPUT});`;
         return `${code}\n`;
     })
+
+    registerBlock(`${categoryPrefix}timer`, {
+        message0: 'seconds since started',
+        args0: [],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `Scratch.vm.runtime.ioDevices.clock.projectTimer()`;
+        return [`${code}`, 0];
+    })
 }
 
 export default register;
