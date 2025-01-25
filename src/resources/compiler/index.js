@@ -55,7 +55,7 @@ class Compiler {
         const headerCode = [
             `/*`,
             `   Created with ExtForge`,
-            `   https://example.com`,
+            `   https://jwklong.github.io/extforge`,
             `*/`,
             `(async function (Scratch) {`,
             `const variables = {};`,
