@@ -52,6 +52,14 @@
         background: #ddd;
     }
 
+    :global(.dark) button {
+        background: #222;
+        color: #fff;
+    }
+    :global(.dark) div.active button {
+        background: #444;
+    }
+
     .contents {
         width: 100vw;
         height: calc(100% - 1.5em);

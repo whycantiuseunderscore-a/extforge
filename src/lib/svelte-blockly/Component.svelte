@@ -186,4 +186,8 @@
         background: #8888;
         border-radius: 6px;
     }
+
+    :global(.blocklyMainBackground) {
+        stroke: none;
+    }
 </style>

@@ -28,6 +28,7 @@
   import NavIconSave from "$lib/images/nav/save.svg";
   import NavIconLoad from "$lib/images/nav/load.svg";
   import NavIconExperiments from "$lib/images/nav/experiments.svg";
+  import NavIconDark from "$lib/images/nav/dark.svg";
 
   import TabManager from "$lib/TabManager/TabManager.svelte";
   import Tab from "$lib/TabManager/Tab.svelte";
@@ -69,6 +70,40 @@
     },
   };
 
+  let localConfig = {
+    dark: false,
+  };
+
+  try {
+    Blockly.Themes.Dark = Blockly.Theme.defineTheme("dark", {
+      base: Blockly.Themes.Classic,
+      componentStyles: {
+        workspaceBackgroundColour: "#111",
+        toolboxBackgroundColour: "#333",
+        toolboxForegroundColour: "#fff",
+        flyoutBackgroundColour: "#222",
+        flyoutForegroundColour: "#ccc",
+        flyoutOpacity: 1,
+        scrollbarColour: "#797979",
+        insertionMarkerColour: "#fff",
+        insertionMarkerOpacity: 0.3,
+        scrollbarOpacity: 0.4,
+        cursorColour: "#d0d0d0"
+      },
+      name: "dark"
+    });
+  } catch {}
+
+  function updateTheme() {
+    if (localConfig.dark) {
+      workspace.setTheme(Blockly.Themes.Dark)
+      document.body.classList.add('dark')
+    } else {
+      workspace.setTheme(Blockly.Themes.Classic)
+      document.body.classList.remove('dark')
+    }
+  }
+
   Patches.Blockly.Connection(Blockly);
   Patches.Blockly.ToolboxFlyout(Blockly, config);
   Patches.Blockly.Renderer(Blockly);
@@ -96,6 +131,7 @@
 
   registerScratchRelated();
 
+  /** @type {import('blockly').Workspace} */
   let workspace;
   let compiler = new Compiler();
   let code;
@@ -160,8 +196,8 @@
         properties.name = projectJson.properties.name ?? "Extension";
         properties.id = projectJson.properties.id ?? "extensionID";
         properties.color = projectJson.properties.color ?? "#0fbd8c";
-        
-        window.variables = projectJson.variables ?? {}
+
+        window.variables = projectJson.variables ?? {};
 
         Blockly.serialization.workspaces.load(projectJson.blockly, workspace);
 
@@ -179,6 +215,8 @@
     registerCategories(workspace);
     registerButtons(workspace);
 
+    updateTheme();
+
     workspace.addChangeListener((event) => {
       Blockly.Events.disableOrphans(event);
       updateGeneratedCode();
@@ -191,16 +229,15 @@
 </head>
 
 <NavigationBar>
-  <NavigationButton
-    icon={NavIconSave}
-    on:click={downloadProject}
-  >
+  <NavigationButton icon={NavIconDark} on:click={() => {
+    localConfig.dark = !localConfig.dark;
+    updateTheme()
+  }}></NavigationButton>
+  <NavigationDivider />
+  <NavigationButton icon={NavIconSave} on:click={downloadProject}>
     Save
   </NavigationButton>
-  <NavigationButton
-    icon={NavIconLoad}
-    on:click={loadProject}
-  >
+  <NavigationButton icon={NavIconLoad} on:click={loadProject}>
     Load
   </NavigationButton>
   <NavigationDivider />

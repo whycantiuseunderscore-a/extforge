@@ -1,5 +1,4 @@
 <script>
-    import Divider from "$lib/NavigationBar/Divider.svelte";
     import Icon from "$lib/images/icon.svg"
 </script>
 
@@ -10,7 +9,6 @@
         class="logo-margin"
         style="height: 40px;"
     />
-    <Divider />
     <slot />
 </div>
 

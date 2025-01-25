@@ -19,4 +19,9 @@
         display: flex;
         height: 100%;
     }
+
+    :global(.dark) div {
+        background: #111;
+        color: #fff;
+    }
 </style>

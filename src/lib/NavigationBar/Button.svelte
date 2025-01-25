@@ -24,6 +24,10 @@
         margin-right: 0.5rem;
     }
 
+    b:empty {
+        margin-left: -0.5rem;
+    }
+
     button {
         position: relative;
 
