@@ -187,6 +187,44 @@ function register() {
         })
     })
 
+    registerBlock(`${categoryPrefix}contains`, {
+        message0: '%1 %2 %3',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "TEXT1",
+                "check": "String",
+                "text": "apple",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_dropdown",
+                "name": "CHOICE",
+                "options": [
+                    ["contains", "includes"],
+                    ["starts with", "startsWith"],
+                    ["ends with", "endsWith"]
+                ]
+            },
+            {
+                "type": "field_input",
+                "name": "TEXT2",
+                "check": "String",
+                "text": "a",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const TEXT1 = javascriptGenerator.valueToCode(block, 'TEXT1');
+        const CHOICE = block.getFieldValue("CHOICE")
+        const TEXT2 = javascriptGenerator.valueToCode(block, 'TEXT2');
+        const code = `(${TEXT1}.${CHOICE}(${TEXT2}))`;
+        return [`${code}`, 0];
+    })
+
     registerBlock(`${categoryPrefix}log`, {
         message0: 'log %1',
         args0: [

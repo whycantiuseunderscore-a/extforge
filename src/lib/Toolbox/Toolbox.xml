@@ -74,6 +74,7 @@
         <block type="strings_substring" />
         <block type="strings_split" />
         <block type="strings_length" />
+        <block type="strings_contains" />
         <sep gap="48"></sep>
         <block type="strings_log" />
     </category>
