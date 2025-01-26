@@ -3,7 +3,7 @@ import registerBlock from '../../register';
 import Blockly from 'blockly/core';
 
 const categoryPrefix = 'runtime_';
-const categoryColor = '#888';
+const categoryColor = '#aaa';
 
 function register() {
     registerBlock(`${categoryPrefix}start`, {

@@ -132,7 +132,7 @@
     
     </category>
     -->
-    <category name="Runtime" colour="#888">
+    <category name="Runtime" colour="#aaa">
         <block type="runtime_onstart" />
         <block type="runtime_onstop" />
         <sep gap="48"></sep>

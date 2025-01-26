@@ -136,11 +136,15 @@
         margin-left: 16px;
         transition: 0.3s cubic-bezier(0, 0, 0.3, 1);
         z-index: 2;
+        color: #000;
+    }
+    :global(.dark .blocklyTreeLabel) {
+        color: #fff;
     }
     :global(.blocklyTreeSelected .blocklyTreeLabel) {
         margin-left: 4px;
         font-weight: 700;
-        color: #000;
+        color: #000b;
     }
 
     :global(.categoryBubble) {
@@ -222,5 +226,9 @@
     :global(.dark .blocklyScrollbarHandle) {
         fill: #777;
         opacity: 0.4;
+    }
+
+    :global(.blocklyText), :global(.blocklyDropdownText) {
+        fill: #000b !important;
     }
 </style>
