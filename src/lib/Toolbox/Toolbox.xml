@@ -45,6 +45,8 @@
         <block type="math_pow" />
         <block type="math_log" />
         <sep gap="48"></sep>
+        <block type="math_random" />
+        <sep gap="48"></sep>
         <block type="math_const" />
         <sep gap="48"></sep>
         <block type="math_true" />

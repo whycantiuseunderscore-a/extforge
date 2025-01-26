@@ -480,6 +480,34 @@ function register() {
         const code = `(${X} <= ${Y})`;
         return [`${code}`, 0];
     })
+    
+    registerBlock(`${categoryPrefix}random`, {
+        message0: 'pick random %1 to %2',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "X",
+                "check": "Number",
+                "value": 1,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_number",
+                "name": "Y",
+                "check": "Number",
+                "value": 10,
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X');
+        const Y = javascriptGenerator.valueToCode(block, 'Y');
+        const code = `vm.runtime.ext_scratch3_operators._random(${X}, ${Y})`;
+        return [`${code}`, 0];
+    })
 }
 
 export default register;
