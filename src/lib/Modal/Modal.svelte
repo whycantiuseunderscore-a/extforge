@@ -69,6 +69,7 @@
         font-weight: bold;
         flex: calc(100% - 2em);
         text-align: center;
+        opacity: 0.8;
     }
 
     .exit {
@@ -80,6 +81,7 @@
         padding: 0;
         background-color: #0000;
         cursor: pointer;
+        opacity: 0.8;
     }
 
     .body {
