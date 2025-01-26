@@ -22,8 +22,12 @@
     img {
         height: 1.5rem;
         margin-right: 0.5rem;
+        opacity: 0.8;
     }
 
+    b {
+        opacity: 0.8;
+    }
     b:empty {
         margin-left: -0.5rem;
     }

@@ -116,6 +116,10 @@
         height: 100%;
     }
 
+    :global(.dark .blocklyToolboxDiv) {
+        background: #333;
+    }
+
     :global(.blocklyToolboxCategory) {
         width: 128px;
         position: relative;
@@ -201,5 +205,22 @@
 
     :global(.blocklyMainBackground) {
         stroke: none;
+    }
+
+    :global(.dark .blocklySvg) {
+        background: #111;
+    }
+
+    :global(.dark .blocklyFlyoutBackground) {
+        fill: #222;
+    }
+
+    :global(.dark .blocklyFlyoutLabelText) {
+        fill: #ccc !important;
+    }
+
+    :global(.dark .blocklyScrollbarHandle) {
+        fill: #777;
+        opacity: 0.4;
     }
 </style>

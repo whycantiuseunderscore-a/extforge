@@ -15,6 +15,7 @@
     function validateName() {
         if (properties.name == "") properties.name = "Extension"
         if (properties.name.length > 20) properties.name = properties.name.substring(0, 20)
+        properties.name = properties.name.replace("\n", " ")
         update()
     }
 </script>
@@ -65,6 +66,7 @@
         border: .5em solid #0004;
         border-radius: 100%;
     }
+
     .name {
         font-size: 1.2em;
         font-weight: 500;
@@ -74,5 +76,9 @@
         margin-top: 0.5em;
         max-width: 100%;
         box-sizing: border-box;
+        outline: none;
+    }
+    :global(.dark) .name {
+        background-color: #fff2;
     }
 </style>

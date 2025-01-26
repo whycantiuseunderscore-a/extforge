@@ -74,32 +74,10 @@
     dark: false,
   };
 
-  try {
-    Blockly.Themes.Dark = Blockly.Theme.defineTheme("dark", {
-      base: Blockly.Themes.Classic,
-      componentStyles: {
-        workspaceBackgroundColour: "#111",
-        toolboxBackgroundColour: "#333",
-        toolboxForegroundColour: "#fff",
-        flyoutBackgroundColour: "#222",
-        flyoutForegroundColour: "#ccc",
-        flyoutOpacity: 1,
-        scrollbarColour: "#797979",
-        insertionMarkerColour: "#fff",
-        insertionMarkerOpacity: 0.3,
-        scrollbarOpacity: 0.4,
-        cursorColour: "#d0d0d0"
-      },
-      name: "dark"
-    });
-  } catch {}
-
   function updateTheme() {
     if (localConfig.dark) {
-      workspace.setTheme(Blockly.Themes.Dark)
       document.body.classList.add('dark')
     } else {
-      workspace.setTheme(Blockly.Themes.Classic)
       document.body.classList.remove('dark')
     }
   }
@@ -260,9 +238,9 @@
         </div>
       </div>
     </Tab>
-    <Tab title="Blocks" {activeTab} {tabs} {handleTabClick} {registerTab}
-      >hi</Tab
-    >
+    <Tab title="Blocks" {activeTab} {tabs} {handleTabClick} {registerTab}>
+      coming soon
+    </Tab>
     <Tab title="Properties" {activeTab} {tabs} {handleTabClick} {registerTab}>
       <PropertiesPicker {properties} on:update={updateGeneratedCode} />
     </Tab>
