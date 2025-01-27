@@ -236,4 +236,9 @@
         filter: invert(1);
         opacity: calc(187 / 256);
     }
+
+    :global(.blocklyMenuItemContent) {
+        color: #000b !important;
+        font-weight: bold;
+    }
 </style>
