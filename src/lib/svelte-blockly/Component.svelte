@@ -228,7 +228,12 @@
         opacity: 0.4;
     }
 
-    :global(.blocklyText), :global(.blocklyDropdownText) {
+    :global(.blocklyText) {
         fill: #000b !important;
+    }
+
+    :global(.blocklyDropdownText) {
+        filter: invert(1);
+        opacity: calc(187 / 256);
     }
 </style>
