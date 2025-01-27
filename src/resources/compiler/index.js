@@ -35,8 +35,8 @@ const ExtForge = {
             return list;
         },
         lists_foreach: {
-            index: 0,
-            value: null
+            index: [],
+            value: []
         }
     }
 }

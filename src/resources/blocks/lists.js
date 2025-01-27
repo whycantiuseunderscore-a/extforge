@@ -197,10 +197,13 @@ function register() {
         const code = 
        `var ${varlistname} = ${LIST};
         for (var ${varindexname} in ${varlistname}) {
-            ExtForge.Utils.lists_foreach.index = ${varindexname};
-            ExtForge.Utils.lists_foreach.value = ${varlistname}[${varindexname}];
+            ExtForge.Utils.lists_foreach.index.push(${varindexname});
+            ExtForge.Utils.lists_foreach.value.push(${varlistname}[${varindexname}]);
             ${BLOCKS}
-        };`
+        };
+        ExtForge.Utils.lists_foreach.index.pop();
+        ExtForge.Utils.lists_foreach.value.pop();
+        `
         return `${code}\n`;
     })
     registerBlock(`${categoryPrefix}foreachindex`, {
@@ -210,7 +213,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const code = `ExtForge.Utils.lists_foreach.index`
+        const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.index.length] ?? 0`
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}foreachvalue`, {
@@ -220,7 +223,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const code = `ExtForge.Utils.lists_foreach.value`
+        const code = `ExtForge.Utils.lists_foreach.value[ExtForge.Utils.lists_foreach.index.value]`
         return [`${code}`, 0];
     })
 

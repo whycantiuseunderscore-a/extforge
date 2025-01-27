@@ -107,7 +107,7 @@ javascriptGenerator.valueToCode = function(block, name, order = 0) {
                         ? value === 'true' 
                         : Boolean(value))(${code})`
             case 'List':
-                return `value && value.length ? value : [value]`
+                return `((value) => value && value.length ? value : [value])(${code})`
         }
     }
     return code
