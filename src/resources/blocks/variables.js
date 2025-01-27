@@ -1,6 +1,7 @@
 import javascriptGenerator from '../javascriptGenerator';
 import registerBlock from '../register';
 import Blockly from 'blockly/core';
+import util from '../util';
 
 const categoryPrefix = 'variables_';
 const categoryColor = '#f96';
@@ -25,7 +26,8 @@ function register() {
         colour: categoryColor,
         extensions: [`${categoryPrefix}get_extension`]
     }, (block) => {
-        const code = `null`;
+        const NAME = block.getFieldValue("NAME")
+        const code = `ExtForge.Variables.get("${util.makeStringSafe(NAME)}")`;
         return `${code}\n`;
     })
 
@@ -48,7 +50,9 @@ function register() {
         colour: categoryColor,
         extensions: [`${categoryPrefix}set_extension`]
     }, (block) => {
-        const code = `null`;
+        const NAME = block.getFieldValue("NAME")
+        const INPUT = javascriptGenerator.valueToCode(block, "INPUT") || "null"
+        const code = `ExtForge.Variables.set("${util.makeStringSafe(NAME)}", ${INPUT})`;
         return `${code}\n`;
     })
 
