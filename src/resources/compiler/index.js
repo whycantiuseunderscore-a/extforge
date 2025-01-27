@@ -25,7 +25,7 @@ const ExtForge = {
             this.raw_[name] = value;
         };
         this.get = (name) => {
-            return this.raw_[name] || null;
+            return this.raw_[name] ?? null;
         }
     },
 
