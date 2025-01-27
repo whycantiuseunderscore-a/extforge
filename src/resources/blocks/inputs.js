@@ -111,6 +111,17 @@ function register() {
         const code = `Scratch.vm.runtime.ioDevices.mouse.getScratchY()`;
         return [`${code}`, 0];
     })
+
+    registerBlock(`${categoryPrefix}moused`, {
+        message0: 'mouse down',
+        args0: [],
+        output: "Boolean",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `Scratch.vm.runtime.ioDevices.mouse.getIsDown()`;
+        return [`${code}`, 0];
+    })
 }
 
 export default register;

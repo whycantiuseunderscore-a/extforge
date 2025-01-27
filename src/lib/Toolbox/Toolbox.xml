@@ -84,6 +84,7 @@
         <sep gap="48"></sep>
         <block type="inputs_mousex" />
         <block type="inputs_mousey" />
+        <block type="inputs_moused" />
     </category>
     <category name="Variables" colour="#f96" custom="variables">
         <!-- resources/categories/variables.js -->
