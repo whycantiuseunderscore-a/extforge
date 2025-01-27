@@ -232,7 +232,7 @@
         fill: #000b !important;
     }
 
-    :global(.blocklyDropdownText) {
+    :global(.blocklyDropdownText), :global(.blocklyEditableText > image) {
         filter: invert(1);
         opacity: calc(187 / 256);
     }

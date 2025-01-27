@@ -54,8 +54,8 @@ export default (arg, color, name, block) => {
     case 'field_angle':
     case 'field_input':
     case 'field_number':
-        color = '#fff'
     case 'field_dropdown': {
+        color = '#fff'
         const newBlockName = `${name}_${arg.name}`
         Blockly.Blocks[newBlockName] = {
             init: function () {

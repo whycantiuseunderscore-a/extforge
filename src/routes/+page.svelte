@@ -82,7 +82,6 @@
     }
   }
 
-  Patches.Blockly.Connection(Blockly);
   Patches.Blockly.ToolboxFlyout(Blockly, config);
   Patches.Blockly.Renderer(Blockly);
 

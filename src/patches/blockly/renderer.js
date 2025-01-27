@@ -111,6 +111,10 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
     }
 }
 
+class PathObject extends Blockly.zelos.PathObject {
+    updateShadow_() {}
+}
+
 class Renderer extends Blockly.zelos.Renderer {
     constructor(name) {
         super(name);
@@ -118,6 +122,10 @@ class Renderer extends Blockly.zelos.Renderer {
 
     makeConstants_() {
         return new CustomConstantProvider();
+    }
+
+    makePathObject(root, style) {
+        return new PathObject(root, style, this.getConstants())
     }
 }
 
