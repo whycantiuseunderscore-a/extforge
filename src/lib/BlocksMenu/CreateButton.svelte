@@ -3,7 +3,7 @@
 </script>
 
 <button on:click>
-    <img src={Plus} />
+    <img src={Plus} alt="" />
 </button>
 
 <style>
@@ -18,6 +18,12 @@
         cursor: pointer;
         display: flex;
         justify-content: flex-end;
+    }
+    button:active {
+        filter: brightness(0.8);
+    }
+    button:focus-visible {
+        outline: none;
     }
 
     img {
