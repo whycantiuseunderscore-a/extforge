@@ -211,8 +211,9 @@
         stroke: none;
     }
 
-    :global(.dark .blocklySvg) {
+    :global(.dark .blocklySvg), :global(.dark .blocklyMutatorBackground) {
         background: #111;
+        fill: #111;
     }
 
     :global(.dark .blocklyFlyoutBackground) {
