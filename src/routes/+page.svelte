@@ -96,6 +96,7 @@
 
   import registerScratchRelated from "../resources/blocks/scratch";
   import registerButtons from "../resources/blocks/buttons";
+    import BlocksMenu from "$lib/BlocksMenu/BlocksMenu.svelte";
 
   registerGeneric();
   registerEvents();
@@ -238,7 +239,7 @@
       </div>
     </Tab>
     <Tab title="Blocks" {activeTab} {tabs} {handleTabClick} {registerTab}>
-      coming soon
+      <BlocksMenu />
     </Tab>
     <Tab title="Properties" {activeTab} {tabs} {handleTabClick} {registerTab}>
       <PropertiesPicker {properties} on:update={updateGeneratedCode} />
