@@ -151,7 +151,7 @@
 
     <sep />
 
-    <category name="Script" colour="#9d5">
+    <category name="Browser" colour="#9d5">
         <block type="script_evalb" />
         <block type="script_evalv" />
     </category>
