@@ -7,23 +7,26 @@ const categoryColor = '#6d6';
 
 function register() {
     registerBlock(`${categoryPrefix}number`, {
-        message0: '%1 to number',
+        message0: '%1',
         args0: [
             {
-                "type": "input_value",
-                "name": "INPUT"
-            }
+                "type": "field_number",
+                "name": "INPUT",
+                "check": null,
+                "text": "1",
+                "acceptsBlocks": true
+            },
         ],
         output: "Number",
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT') || "null";
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT');
         const code = `Scratch.Cast.toNumber(${INPUT})`;
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}boolean`, {
-        message0: '%1 to boolean',
+        message0: '%1',
         args0: [
             {
                 "type": "input_value",
@@ -34,7 +37,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT') || "null";
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT') || "false";
         const code = `Scratch.Cast.toBoolean(${INPUT})`;
         return [`${code}`, 0];
     })

@@ -7,18 +7,21 @@ const categoryColor = '#6db';
 
 function register() {
     registerBlock(`${categoryPrefix}string`, {
-        message0: '%1 to string',
+        message0: '%1',
         args0: [
             {
-                "type": "input_value",
-                "name": "INPUT"
-            }
+                "type": "field_input",
+                "name": "INPUT",
+                "check": null,
+                "text": "apple",
+                "acceptsBlocks": true
+            },
         ],
         output: "String",
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT') || "null";
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT');
         const code = `Scratch.Cast.toString(${INPUT})`;
         return [`${code}`, 0];
     })
