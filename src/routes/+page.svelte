@@ -40,6 +40,7 @@
 
   import PropertiesPicker from "$lib/PropertiesPicker/PropertiesPicker.svelte";
   import ExportMenu from "$lib/ExportMenu/ExportMenu.svelte";
+  import BlocksMenu from "$lib/BlocksMenu/BlocksMenu.svelte";
 
   const en = {
     rtl: false,
@@ -96,7 +97,8 @@
 
   import registerScratchRelated from "../resources/blocks/scratch";
   import registerButtons from "../resources/blocks/buttons";
-    import BlocksMenu from "$lib/BlocksMenu/BlocksMenu.svelte";
+
+  import registerScript from "../resources/blocks/script";
 
   registerGeneric();
   registerEvents();
@@ -108,6 +110,8 @@
   registerLists();
 
   registerScratchRelated();
+
+  registerScript();
 
   /** @type {import('blockly').Workspace} */
   let workspace;
