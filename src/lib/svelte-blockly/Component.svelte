@@ -234,7 +234,8 @@
 
     :global(.blocklyDropdownText), :global(.blocklyEditableText > image) {
         filter: invert(1);
-        opacity: calc(187 / 256);
+        opacity: 0.9;
+        font-weight: 400 !important;
     }
 
     :global(.blocklyMenuItemContent) {
