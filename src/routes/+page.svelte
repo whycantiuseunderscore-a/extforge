@@ -199,10 +199,27 @@
 
     updateTheme();
 
-    workspace.addChangeListener((event) => {
+    workspace.addChangeListener(event => {
       Blockly.Events.disableOrphans(event);
       updateGeneratedCode();
     });
+
+    addEventListener('beforeunload', event => {
+      if (workspace.getAllBlocks().length > 0) {
+        event.preventDefault();
+        event.returnValue = true;
+      }
+    })
+
+    let newconfig = localStorage.getItem('localConfig')
+    if (newconfig) {
+      localConfig.dark = JSON.parse(newconfig).dark ?? false
+      updateTheme()
+    }
+
+    addEventListener('unload', event => {
+      localStorage.setItem('localConfig', JSON.stringify(localConfig))
+    })
   });
 </script>
 
