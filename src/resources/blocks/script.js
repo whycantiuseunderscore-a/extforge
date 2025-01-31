@@ -42,7 +42,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT');
-        const code = `eval("${INPUT}")`;
+        const code = `eval(${INPUT})`;
         return [code, 0];
     })
 }
