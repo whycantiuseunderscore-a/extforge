@@ -36,8 +36,8 @@ function register() {
     }, (block) => {
         let strings = []
 
-        for (let i = 0; block.getInput(`INPUT${i}`); i++) {
-            const INPUT = javascriptGenerator.valueToCode(block, `INPUT${i}`);
+        for (let i = 0; block.getInput(`ITEM${i}`); i++) {
+            const INPUT = javascriptGenerator.valueToCode(block, `ITEM${i}`);
             strings.push(INPUT)
         }
 
@@ -346,6 +346,7 @@ function register() {
                 if (!this.getInput(`ITEM${i}`)) {
                     const input = this.appendValueInput(`ITEM${i}`)
                                       .setAlign(Blockly.ALIGN_RIGHT);
+                    input.setCheck("String")
                     const inputInside = this.workspace.newBlock('generic_text')
                     inputInside.setShadow(true)
                     inputInside.initSvg()

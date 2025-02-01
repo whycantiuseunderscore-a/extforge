@@ -243,7 +243,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        const code = `true`;
+        const code = `false`;
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}randombool`, {
