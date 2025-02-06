@@ -37,6 +37,9 @@ const ExtForge = {
         lists_foreach: {
             index: [],
             value: []
+        },
+        countString: (x, y) => {
+            return y.length == 0 ? 0 : x.split(y).length - 1
         }
     }
 }

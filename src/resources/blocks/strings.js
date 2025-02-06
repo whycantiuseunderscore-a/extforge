@@ -249,6 +249,34 @@ function register() {
         return `${code}\n`;
     })
 
+    registerBlock(`${categoryPrefix}amountof`, {
+        message0: 'amount of %1 in %2',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "NEEDLE",
+                "check": "String",
+                "text": "p",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "field_input",
+                "name": "HAYSTACK",
+                "check": "String",
+                "text": "apple",
+                "acceptsBlocks": true
+            }
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const NEEDLE = javascriptGenerator.valueToCode(block, 'NEEDLE');
+        const HAYSTACK = javascriptGenerator.valueToCode(block, 'HAYSTACK');
+        const code = `ExtForge.Utils.countString(${HAYSTACK}, ${NEEDLE})`;
+        return [`${code}`, 0];
+    })
+
     const strings_join_mutator = {
         items_: 0,
 
