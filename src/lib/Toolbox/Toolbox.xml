@@ -109,11 +109,9 @@
         <block type="lists_foreachindex" />
         <block type="lists_foreachvalue" />
     </category>
-    <!--
-    <category name="Functions" colour="#b6f">
+    <category name="Blocks" colour="#b6f">
     
     </category>
-    -->
 
     <sep />
 
@@ -149,9 +147,6 @@
         <block type="runtime_frameset" />
         <block type="runtime_frameget" />
     </category>
-
-    <sep />
-
     <category name="Browser" colour="#9d5">
         <block type="script_evalb" />
         <block type="script_evalv" />

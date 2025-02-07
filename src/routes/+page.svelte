@@ -85,33 +85,10 @@
 
   Patches.Blockly.ToolboxFlyout(Blockly, config);
   Patches.Blockly.Renderer(Blockly);
-
-  import registerGeneric from "../resources/blocks/generic";
-  import registerEvents from "../resources/blocks/events";
-  import registerControl from "../resources/blocks/control";
-  import registerMath from "../resources/blocks/math";
-  import registerStrings from "../resources/blocks/strings";
-  import registerInputs from "../resources/blocks/inputs";
-  import registerVariables from "../resources/blocks/variables";
-  import registerLists from "../resources/blocks/lists";
-
-  import registerScratchRelated from "../resources/blocks/scratch";
-  import registerButtons from "../resources/blocks/buttons";
-
-  import registerScript from "../resources/blocks/script";
-
-  registerGeneric();
-  registerEvents();
-  registerControl();
-  registerMath();
-  registerStrings();
-  registerInputs();
-  registerVariables();
-  registerLists();
-
-  registerScratchRelated();
-
-  registerScript();
+  
+  import registerBlocks from "../resources/blocks"
+  import registerButtons from "../resources/buttons"
+  registerBlocks()
 
   /** @type {import('blockly').Workspace} */
   let workspace;
