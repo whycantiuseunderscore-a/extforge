@@ -110,7 +110,7 @@
         <block type="lists_foreachvalue" />
     </category>
     <category name="Blocks" colour="#b6f">
-    
+        <block type="blocks_define" />
     </category>
 
     <sep />

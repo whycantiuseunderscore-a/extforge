@@ -1,9 +1,29 @@
 <script>
+    import util from "../../resources/util";
     import CreateButton from "./CreateButton.svelte";
+    import Blockly from "blockly/core";
+
+    function createBlock() {
+        let id = util.randomHex(16)
+        let block = {
+            fields: []
+        }
+
+        window.blocks[id] = block
+        window.blocks = window.blocks //make sure it updates
+
+        let workspace = Blockly.getMainWorkspace()
+        /** @type {Blockly.BlockSvg} */
+        let defineBlock = workspace.newBlock("blocks_define")
+        defineBlock.blockId_ = id
+        defineBlock.updateShape_()
+        defineBlock.initSvg()
+        defineBlock.render()
+    }
 </script>
 
 <div class="main">
-    <CreateButton />
+    <CreateButton on:click={createBlock} />
 </div>
 
 <style>
