@@ -3,14 +3,21 @@
     import CreateButton from "./CreateButton.svelte";
     import Blockly from "blockly/core";
 
+    function updateBlocks() {
+        blocks = window.blocks
+        window.blocks = blocks
+    }
+
     function createBlock() {
         let id = util.randomHex(16)
         let block = {
-            fields: []
+            fields: [
+                "block"
+            ]
         }
 
         window.blocks[id] = block
-        window.blocks = window.blocks //make sure it updates
+        updateBlocks()
 
         let workspace = Blockly.getMainWorkspace()
         /** @type {Blockly.BlockSvg} */
@@ -20,10 +27,17 @@
         defineBlock.initSvg()
         defineBlock.render()
     }
+
+    let blocks = {}
 </script>
 
 <div class="main">
     <CreateButton on:click={createBlock} />
+    {#each Object.entries(blocks) as [id, block]}
+        <p>{id}</p>
+    {:else}
+        <p>no blocks yet!</p>
+    {/each}    
 </div>
 
 <style>
