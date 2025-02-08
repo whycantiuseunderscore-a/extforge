@@ -118,6 +118,7 @@
       blockly: projectData,
       properties: properties,
       variables: window.variables || {},
+      blocks: window.blocks || {}
     };
 
     // zip
@@ -157,6 +158,7 @@
         properties.color = projectJson.properties.color ?? "#0fbd8c";
 
         window.variables = projectJson.variables ?? {};
+        window.blocks = projectJson.blocks ?? {};
 
         Blockly.serialization.workspaces.load(projectJson.blockly, workspace);
 
@@ -170,6 +172,7 @@
 
     window.Blockly = Blockly;
     window.variables = {};
+    window.blocks = {};
 
     registerCategories(workspace);
     registerButtons(workspace);
