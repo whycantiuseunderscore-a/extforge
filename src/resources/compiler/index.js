@@ -97,12 +97,24 @@ class Compiler {
         classRegistry.extensionInfo.id = properties.id;
         classRegistry.extensionInfo.name = properties.name;
         classRegistry.extensionInfo.color1 = properties.color;
+        classRegistry.extensionInfo.blocks = Object.entries(window.blocks ?? {}).map(([id, block]) => {
+            return {
+                opcode: `block_${id}`,
+                text: id, //placeholder
+            }
+        })
 
         return [].concat(headerCode, classRegistry.top, [
             `getInfo() {`,
             `   return ${JSON.stringify(classRegistry.extensionInfo).substring(0, JSON.stringify(classRegistry.extensionInfo).length - 1)}}`,
             `}`,
-        ], classRegistry.bottom, code, footerCode).join('\n');
+        ], Object.entries(window.blocks ?? {}).map(([id, block]) => {
+            let blockCode = javascriptGenerator.statementToCode(
+                workspace.getTopBlocks().find(v => v.type == "blocks_define" && v.blockId_ == id),
+                "BLOCKS"
+            )
+            return `block_${id}() { ${blockCode} }`
+        }), classRegistry.bottom, code, footerCode).join('\n');
     }
 }
 
