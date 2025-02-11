@@ -27,6 +27,7 @@
         let workspace = Blockly.getMainWorkspace()
         /** @type {Blockly.BlockSvg} */
         let defineBlock = workspace.newBlock("blocks_define")
+        defineBlock.setDeletable(false)
         defineBlock.blockId_ = id
         defineBlock.updateShape_()
         defineBlock.initSvg()
