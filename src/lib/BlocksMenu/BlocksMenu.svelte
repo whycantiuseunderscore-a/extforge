@@ -6,6 +6,13 @@
     function updateBlocks() {
         blocks = window.blocks
         window.blocks = blocks
+
+        //refresh workspace
+        let workspace = Blockly.getMainWorkspace()
+        let xml = Blockly.Xml.workspaceToDom(workspace);
+        workspace.clear();
+        Blockly.Xml.domToWorkspace(xml, workspace);
+        this.refreshToolboxSelection();
     }
 
     function createBlock() {
@@ -15,9 +22,7 @@
                 "block"
             ]
         }
-
         window.blocks[id] = block
-        updateBlocks()
 
         let workspace = Blockly.getMainWorkspace()
         /** @type {Blockly.BlockSvg} */
@@ -26,6 +31,15 @@
         defineBlock.updateShape_()
         defineBlock.initSvg()
         defineBlock.render()
+
+        updateBlocks()
+    }
+
+    function tempEditBlock(id) {
+        let block = window.blocks[id]
+        block.fields[0] = prompt("temporary block name thing", "block")
+
+        updateBlocks()
     }
 
     let blocks = {}
@@ -34,7 +48,12 @@
 <div class="main">
     <CreateButton on:click={createBlock} />
     {#each Object.entries(blocks) as [id, block]}
-        <p>{id}</p>
+        <div class="block">
+            <span class="name">{block.fields[0]}</span>
+            <div>
+                <button class="edit" on:click={() => tempEditBlock(id)}>Edit</button>
+            </div>
+        </div>
     {:else}
         <p>no blocks yet!</p>
     {/each}    
@@ -48,5 +67,18 @@
         flex-direction: column;
         align-items: center;
         margin: auto;
+        gap: 0.5em;
+    }
+
+    .block {
+        background: #8884;
+        width: 100%;
+        height: 4em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0.8em;
+        box-sizing: border-box;
+        padding: 8px;
     }
 </style>

@@ -100,7 +100,7 @@ class Compiler {
         classRegistry.extensionInfo.blocks = Object.entries(window.blocks ?? {}).map(([id, block]) => {
             return {
                 opcode: `block_${id}`,
-                text: id, //placeholder
+                text: window.blocks[id].fields[0], //placeholder
             }
         })
 

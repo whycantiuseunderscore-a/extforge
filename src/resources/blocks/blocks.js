@@ -41,7 +41,7 @@ function register() {
 
         updateShape_: function() {
             if (this.getField("ID")) this.getInput("DUMMY").removeField("ID")
-            this.getInput("DUMMY").appendField(this.blockId_, "ID")
+            this.getInput("DUMMY").appendField(window.blocks[this.blockId_].fields[0], "ID")
         }
     }
     Blockly.Extensions.unregister(`${categoryPrefix}define_mutator`)
