@@ -81,4 +81,18 @@
         box-sizing: border-box;
         padding: 8px;
     }
+
+    .block button {
+        appearance: none;
+        border: none;
+        background: #4bf;
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+        border-radius: 0.2em;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-end;
+        font-weight: bold;
+    }
 </style>
