@@ -16,6 +16,8 @@
     }
 
     function createBlock() {
+        if (!confirm("Are you sure you want to make a block?")) return
+
         let id = util.randomHex(16)
         let block = {
             fields: [
