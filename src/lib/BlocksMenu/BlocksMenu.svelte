@@ -36,11 +36,9 @@
         updateBlocks()
     }
 
-    function tempEditBlock(id) {
-        let block = window.blocks[id]
-        block.fields[0] = prompt("temporary block name thing", "block")
-
-        updateBlocks()
+    function editBlock(id) {
+        window.modals["editblock"].blockId = id
+        window.modals["editblock"].toggle()
     }
 
     let blocks = {}
@@ -52,7 +50,7 @@
         <div class="block">
             <span class="name">{block.fields[0]}</span>
             <div>
-                <button class="edit" on:click={() => tempEditBlock(id)}>Edit</button>
+                <button class="edit" on:click={() => editBlock(id)}>Edit</button>
             </div>
         </div>
     {:else}

@@ -35,6 +35,7 @@
 
   import ExperimentsModal from "$lib/Modal/ExperimentsModal.svelte";
   import CreateVariableModal from "$lib/Modal/CreateVariableModal.svelte";
+  import EditBlockModal from "$lib/Modal/EditBlockModal.svelte";
 
   import CodePreview from "$lib/CodePreview/CodePreview.svelte";
 
@@ -252,6 +253,7 @@
 </div>
 <ExperimentsModal />
 <CreateVariableModal />
+<EditBlockModal />
 
 <style>
   #main {
