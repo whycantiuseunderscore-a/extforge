@@ -1,4 +1,5 @@
 import javascriptGenerator from '../javascriptGenerator';
+import util from '../util';
 
 const start = `
 if (!Scratch.extensions.unsandboxed) {
@@ -100,7 +101,7 @@ class Compiler {
         classRegistry.extensionInfo.blocks = Object.entries(window.blocks ?? {}).map(([id, block]) => {
             return {
                 opcode: `block_${id}`,
-                text: window.blocks[id].fields[0], //placeholder
+                text: util.blockToExtensionText(block.fields)
             }
         })
 

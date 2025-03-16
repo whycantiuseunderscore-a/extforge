@@ -8,12 +8,8 @@ const categoryColor = '#b6f';
 
 function register() {
     registerBlock(`${categoryPrefix}define`, {
-        message0: '%1 %2',
+        message0: '%1',
         args0: [
-            {
-                "type": "input_dummy",
-                "name": "DUMMY"
-            },
             {
                 "type": "input_statement",
                 "name": "BLOCKS"
@@ -40,8 +36,24 @@ function register() {
         },
 
         updateShape_: function() {
-            if (this.getField("ID")) this.getInput("DUMMY").removeField("ID")
-            this.getInput("DUMMY").appendField(window.blocks[this.blockId_].fields[0], "ID")
+            for (let i = 0; this.removeInput(`INPUT${i}`, true); i++) {}
+
+            let block = window.blocks[this.blockId_]
+            if (!block) return
+            
+            let i = 0
+            for (let field of block.fields) {
+                switch (field.type) {
+                    case "label":
+                        this.appendDummyInput(`INPUT${i}`)
+                            .appendField(field.text)
+                        break;
+                }
+
+                this.moveInputBefore(`INPUT${i}`, `BLOCKS`)
+
+                i++
+            }
         }
     }
     Blockly.Extensions.unregister(`${categoryPrefix}define_mutator`)

@@ -8,11 +8,13 @@
         window.blocks = blocks
 
         //refresh workspace
-        let workspace = Blockly.getMainWorkspace()
-        let xml = Blockly.Xml.workspaceToDom(workspace);
-        workspace.clear();
-        Blockly.Xml.domToWorkspace(xml, workspace);
-        this.refreshToolboxSelection();
+        try {
+            let workspace = Blockly.getMainWorkspace()
+            let xml = Blockly.Xml.workspaceToDom(workspace);
+            workspace.clear();
+            Blockly.Xml.domToWorkspace(xml, workspace);
+            this.refreshToolboxSelection();
+        } catch {}
     }
 
     function createBlock() {
@@ -21,7 +23,10 @@
         let id = util.randomHex(16)
         let block = {
             fields: [
-                "block"
+                {
+                    type: "label",
+                    text: "block"
+                }
             ]
         }
         window.blocks[id] = block
@@ -50,7 +55,7 @@
     <CreateButton on:click={createBlock} />
     {#each Object.entries(blocks) as [id, block]}
         <div class="block">
-            <span class="name">{block.fields[0]}</span>
+            <span class="name">{util.blockToName(block.fields)}</span>
             <div>
                 <button class="edit" on:click={() => editBlock(id)}>Edit</button>
             </div>
