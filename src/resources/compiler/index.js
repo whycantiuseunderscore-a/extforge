@@ -74,7 +74,7 @@ class Compiler {
             bottom: [
                 `}`,
                 ``,
-                `//your code starts here yayayayaya`
+                `// code compiled from extforge`
             ]
         }
         const footerCode = [
@@ -101,7 +101,16 @@ class Compiler {
         classRegistry.extensionInfo.blocks = Object.entries(window.blocks ?? {}).map(([id, block]) => {
             return {
                 opcode: `block_${id}`,
-                text: util.blockToExtensionText(block.fields)
+                text: util.blockToExtensionText(block.fields),
+                arguments: Object.fromEntries(block.fields.filter(v => v.type !== 'label').map(v => {
+                    switch (v.type) {
+                        case 'string': {
+                            return [v.id, {
+                                type: "string"
+                            }]
+                        }
+                    }
+                }))
             }
         })
 
@@ -114,7 +123,7 @@ class Compiler {
                 workspace.getTopBlocks().find(v => v.type == "blocks_define" && v.blockId_ == id),
                 "BLOCKS"
             )
-            return `block_${id}() { ${blockCode} }`
+            return `async block_${id}(args) { ${blockCode} }`
         }), classRegistry.bottom, code, footerCode).join('\n');
     }
 }

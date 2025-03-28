@@ -1,5 +1,5 @@
 import javascriptGenerator from '../javascriptGenerator';
-import registerBlock from '../register';
+import { registerBlock, registerMutator } from '../register';
 import Blockly from 'blockly/core';
 import util from '../util';
 
@@ -340,8 +340,7 @@ function register() {
             }
         }
     }
-    Blockly.Extensions.unregister(`${categoryPrefix}create_mutator`)
-    Blockly.Extensions.registerMutator(
+    registerMutator(
         `${categoryPrefix}create_mutator`,
         lists_create_mutator,
         null,

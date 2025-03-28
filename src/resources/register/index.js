@@ -2,7 +2,10 @@ import Blockly from 'blockly/core';
 import javascriptGenerator from '../javascriptGenerator';
 import convertArgToBlock from '../argBlocks'
 
-export default (blockName, jsonData, compileFunction) => {
+/**
+ * @param {(block: Blockly.Block) => string} compileFunction 
+ */
+export function registerBlock(blockName, jsonData, compileFunction) {
     jsonData.type = blockName
 
     const blockObject = {
@@ -29,4 +32,9 @@ export default (blockName, jsonData, compileFunction) => {
 
     // register block compile function
     javascriptGenerator[blockName] = compileFunction;
+}
+
+export function registerMutator(mutatorName, ...args) {
+    Blockly.Extensions.unregister(mutatorName)
+    Blockly.Extensions.registerMutator(mutatorName, ...args);
 }

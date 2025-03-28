@@ -1,5 +1,5 @@
 import javascriptGenerator from '../javascriptGenerator';
-import registerBlock from '../register';
+import { registerBlock, registerMutator } from '../register';
 import Blockly from 'blockly/core';
 
 const categoryPrefix = 'strings_';
@@ -391,8 +391,7 @@ function register() {
             }
         }
     }
-    Blockly.Extensions.unregister(`${categoryPrefix}join_mutator`)
-    Blockly.Extensions.registerMutator(
+    registerMutator(
         `${categoryPrefix}join_mutator`,
         strings_join_mutator,
         null,

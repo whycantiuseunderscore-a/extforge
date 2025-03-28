@@ -9,6 +9,9 @@ export default {
                 case "label": {
                     return field.text
                 }
+                case "string": {
+                    return `(${field.text})`
+                }
             }
         }).join(" ")
     },
@@ -18,6 +21,9 @@ export default {
             switch (field.type) {
                 case "label": {
                     return field.text
+                }
+                case "string": {
+                    return `[${field.id}]`
                 }
             }
         }).join(" ")

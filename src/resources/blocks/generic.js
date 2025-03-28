@@ -1,5 +1,5 @@
 import javascriptGenerator from '../javascriptGenerator';
-import registerBlock from '../register';
+import { registerBlock } from '../register';
 import Blockly from 'blockly/core';
 
 const categoryPrefix = 'generic_';

@@ -26,6 +26,10 @@
                 {
                     type: "label",
                     text: "block"
+                }, {
+                    type: "string",
+                    text: "reporter",
+                    id: util.randomHex(16)
                 }
             ]
         }
