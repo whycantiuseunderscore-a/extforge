@@ -86,6 +86,7 @@
 
   Patches.Blockly.ToolboxFlyout(Blockly, config);
   Patches.Blockly.Renderer(Blockly);
+  Patches.Blockly.DuplicateDrag(Blockly);
   
   import registerBlocks from "../resources/blocks"
   import registerButtons from "../resources/buttons"
