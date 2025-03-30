@@ -170,8 +170,16 @@ function register() {
     })
 
     registerBlock(`${categoryPrefix}foreach`, {
-        message0: 'for each item in %1 %2 %3',
+        message0: 'for each %1 %2 in %3 %4 %5',
         args0: [
+            {
+                "type": "input_value",
+                "name": "INDEX"
+            },
+            {
+                "type": "input_value",
+                "name": "VALUE"
+            },
             {
                 "type": "input_value",
                 "name": "LIST",
@@ -207,20 +215,22 @@ function register() {
         return `${code}\n`;
     })
     registerBlock(`${categoryPrefix}foreachindex`, {
-        message0: 'item index',
+        message0: 'index',
         args0: [],
         output: "Number",
         inputsInline: true,
+        canDragDuplicate: true,
         colour: categoryColor
     }, (block) => {
         const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.index.length] ?? 0`
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}foreachvalue`, {
-        message0: 'item value',
+        message0: 'value',
         args0: [],
         output: null,
         inputsInline: true,
+        canDragDuplicate: true,
         colour: categoryColor
     }, (block) => {
         const code = `ExtForge.Utils.lists_foreach.value[ExtForge.Utils.lists_foreach.index.value]`

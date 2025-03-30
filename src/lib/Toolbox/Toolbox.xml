@@ -105,9 +105,14 @@
         <block type="lists_join" />
         <block type="lists_concat" />
         <sep gap="48"></sep>
-        <block type="lists_foreach" />
-        <block type="lists_foreachindex" />
-        <block type="lists_foreachvalue" />
+        <block type="lists_foreach">
+            <value name="INDEX">
+                <shadow type="lists_foreachindex" />
+            </value>
+            <value name="VALUE">
+                <shadow type="lists_foreachvalue" />
+            </value>
+        </block>
     </category>
     <category name="Blocks" colour="#b6f">
         
