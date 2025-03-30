@@ -24,11 +24,11 @@
             workspace = Blockly.inject(root, {
                 ...config,
                 toolbox:
-                    '<xml><category name="Loading..." colour="100"></category></xml>',
+                    config.toolbox ? '<xml><category name="Loading..." colour="100"></category></xml>' : null,
                 rtl,
             });
             registerDynamicCategories(workspace);
-            workspace.updateToolbox(config.toolbox);
+            if (config.toolbox) workspace.updateToolbox(config.toolbox);
             workspace.refreshToolboxSelection();
             if (dom !== null) {
                 try {

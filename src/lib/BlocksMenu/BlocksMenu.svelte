@@ -9,7 +9,7 @@
 
         //refresh workspace
         try {
-            let workspace = Blockly.getMainWorkspace()
+            let workspace = window.workspace
             let xml = Blockly.Xml.workspaceToDom(workspace);
             workspace.clear();
             Blockly.Xml.domToWorkspace(xml, workspace);
@@ -22,6 +22,7 @@
 
         let id = util.randomHex(16)
         let block = {
+            type: "command",
             fields: [
                 {
                     type: "label",
@@ -35,7 +36,7 @@
         }
         window.blocks[id] = block
 
-        let workspace = Blockly.getMainWorkspace()
+        let workspace = window.workspace
         /** @type {Blockly.BlockSvg} */
         let defineBlock = workspace.newBlock("blocks_define")
         defineBlock.setDeletable(false)

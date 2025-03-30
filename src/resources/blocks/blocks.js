@@ -50,6 +50,7 @@ function register() {
                             .appendField(field.text)
                         break;
                     case "string":
+                    case "number":
                         let input = this.appendValueInput(`INPUT${i}`)
                         let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
                         reporter.blockId_ = this.blockId_
@@ -58,6 +59,7 @@ function register() {
                         reporter.initSvg()
                         reporter.render()
                         reporter.outputConnection.connect(input.connection)
+                        break
                 }
 
                 this.moveInputBefore(`INPUT${i}`, `BLOCKS`)
@@ -111,17 +113,39 @@ function register() {
             try {
                 block = window.blocks[this.blockId_]
                 field = block.fields.find(v => v.id == this.fieldId_)
+                text = field.text
             } catch {}
 
             this.removeInput("TEXT", true)
             this.appendDummyInput("TEXT")
-                .appendField(field.text)
+                .appendField(text)
+
+            if (field) {
+                switch (field.type) {
+                    case "string":
+                        this.setOutput(true, "String")
+                        break
+                    case "number":
+                        this.setOutput(true, "Number")
+                        break
+                }
+            } else {
+                this.setOutput(true, null)
+            }
         }
     }
     registerMutator(
         `${categoryPrefix}input_mutator`,
         inputMutator
     );
+
+    registerBlock(`${categoryPrefix}execute`, {
+        message0: 'block preview',
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return ''
+    })
 }
 
 export default register

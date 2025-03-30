@@ -173,6 +173,7 @@
     code = "";
 
     window.Blockly = Blockly;
+    window.workspace = workspace;
     window.variables = {};
     window.blocks = {};
 

@@ -13,7 +13,7 @@
         data.toggle()
 
         varName = "my variable"
-        Blockly.getMainWorkspace().refreshToolboxSelection()
+        window.workspace.refreshToolboxSelection()
     }
 
     let id = "createVariable"
