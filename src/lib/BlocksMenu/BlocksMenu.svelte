@@ -50,6 +50,7 @@
 
     function editBlock(id) {
         window.modals["editblock"].blockId = id
+        window.modals["editblock"].tempBlock = window.blocks[id]
         window.modals["editblock"].toggle()
     }
 
