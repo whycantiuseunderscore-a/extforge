@@ -57,16 +57,22 @@
                     <th>Text</th>
                     <th><!-- options --></th>
                 </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                </tr>
+                {#each Object.keys(data.tempBlock ? data.tempBlock.fields : {}) as i}
+                    <tr>
+                        <td>
+                            <select value={data.tempBlock.fields[i].type}>
+                                <option value="label">Label</option>
+                                <option value="string">String</option>
+                                <option value="number">Number</option>
+                                <option value="boolean">Boolean</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" value={data.tempBlock.fields[i].type} />
+                        </td>
+                        <td></td>
+                    </tr>
+                {/each}
             </table>
         </div>
         <div class="bottom">
@@ -94,6 +100,16 @@
 
     .fields table {
         width: 100%;
+    }
+
+    .fields th:nth-child(1) {
+        width: 20%;
+    }
+    .fields th:nth-child(2) {
+        width: 30%;
+    }
+    .fields th:nth-child(3) {
+        width: 50%;
     }
 
     .bottom {
