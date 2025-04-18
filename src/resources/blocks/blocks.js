@@ -128,6 +128,9 @@ function register() {
                     case "number":
                         this.setOutput(true, "Number")
                         break
+                    case "boolean":
+                        this.setOutput(true, "Boolean")
+                        break
                 }
             } else {
                 this.setOutput(true, null)

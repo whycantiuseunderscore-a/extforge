@@ -109,6 +109,16 @@ class Compiler {
                                 type: "string"
                             }]
                         }
+                        case 'number': {
+                            return [v.id, {
+                                type: "number"
+                            }]
+                        }
+                        case 'boolean': {
+                            return [v.id, {
+                                type: "boolean"
+                            }]
+                        }
                     }
                 }))
             }

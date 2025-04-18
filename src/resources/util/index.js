@@ -10,7 +10,13 @@ export default {
                     return field.text
                 }
                 case "string": {
+                    return `[${field.text}]`
+                }
+                case "number": {
                     return `(${field.text})`
+                }
+                case "boolean": {
+                    return `<${field.text}>`
                 }
             }
         }).join(" ")
@@ -22,7 +28,9 @@ export default {
                 case "label": {
                     return field.text
                 }
-                case "string": {
+                case "string":
+                case "number":
+                case "boolean": {
                     return `[${field.id}]`
                 }
             }
