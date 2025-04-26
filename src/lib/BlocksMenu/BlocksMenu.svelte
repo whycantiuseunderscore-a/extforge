@@ -54,6 +54,12 @@
         window.modals["editblock"].toggle()
     }
 
+    setInterval(() => {
+        if (!globalThis.window) return
+        blocks = window.blocks
+        window.blocks = blocks
+    }, 1000)
+
     let blocks = {}
 </script>
 

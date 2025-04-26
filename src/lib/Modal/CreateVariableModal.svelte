@@ -13,6 +13,7 @@
         data.toggle()
 
         varName = "my variable"
+        varType = "null"
         window.workspace.refreshToolboxSelection()
     }
 

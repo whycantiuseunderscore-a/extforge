@@ -35,6 +35,23 @@
         },
     };
 
+    function updateBlocks() {
+        //refresh workspace
+        try {
+            let workspace = window.workspace
+            let xml = Blockly.Xml.workspaceToDom(workspace);
+            workspace.clear();
+            Blockly.Xml.domToWorkspace(xml, workspace);
+            this.refreshToolboxSelection();
+        } catch {}
+    }
+
+    function saveBlock(data) {
+        data.toggle()
+        window.blocks[data.blockId] = data.tempBlock
+        updateBlocks()
+    }
+
     onMount(() => {
         /** @type {Blockly.BlockSvg} */
         let previewBlock = workspace.newBlock("blocks_execute");
@@ -60,7 +77,10 @@
                 {#each Object.keys(data.tempBlock ? data.tempBlock.fields : {}) as i}
                     <tr>
                         <td>
-                            <select value={data.tempBlock.fields[i].type}>
+                            <select value={data.tempBlock.fields[i].type} on:change={(e) => {
+                                data.tempBlock.fields[i].type = e.target.value
+                                updateBlocks()
+                            }}>
                                 <option value="label">Label</option>
                                 <option value="string">String</option>
                                 <option value="number">Number</option>
@@ -68,7 +88,10 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" value={data.tempBlock.fields[i].type} />
+                            <input type="text" value={data.tempBlock.fields[i].text} on:change={(e) => {
+                                data.tempBlock.fields[i].text = e.target.value
+                                updateBlocks()
+                            }} />
                         </td>
                         <td></td>
                     </tr>
@@ -76,7 +99,7 @@
             </table>
         </div>
         <div class="bottom">
-            <button>Save</button>
+            <!--<button on:click={() => saveBlock(data)}>Save</button>-->
         </div>
     </div>
 </Modal>
