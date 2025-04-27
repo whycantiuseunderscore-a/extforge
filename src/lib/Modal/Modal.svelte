@@ -22,7 +22,9 @@
     <div class="inside">
         <div class="bar">
             <span class="title">{title}</span>
-            <button class="exit" on:click={data.toggle} style={`background-image: url(${ExitIcon})`}>
+            <button class="exit" on:click={data.toggle}>
+                <img src={ExitIcon} alt="" />
+            </button>
         </div>
         <div class="body">
             <slot {data} />
@@ -82,6 +84,10 @@
         background-color: #0000;
         cursor: pointer;
         opacity: 0.8;
+    }
+    .exit img {
+        aspect-ratio: 1;
+        padding-top: 0.25em;
     }
 
     .body {

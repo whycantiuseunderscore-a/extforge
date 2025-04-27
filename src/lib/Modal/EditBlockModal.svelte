@@ -99,6 +99,7 @@
                         <td>
                             <button on:click={() => {
                                 data.tempBlock.fields.splice(i, 1)
+                                data.update()
                                 updateBlocks()
                             }}>Delete</button>
                         </td>
@@ -114,7 +115,6 @@
                     text: "text",
                     id: util.randomHex(16)
                 })
-                window.blocks[data.blockId] = data.tempBlock
                 data.update()
                 updateBlocks()
             }}>Add field</button>
