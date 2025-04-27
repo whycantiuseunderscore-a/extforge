@@ -2,7 +2,8 @@
     import { createEventDispatcher } from "svelte";
 
     import NavIconUnknown from "$lib/images/nav/unknown.svg";
-    export let icon = NavIconUnknown
+    /** @type {string?} */
+    export let icon = null
 
     const dispatch = createEventDispatcher();
 

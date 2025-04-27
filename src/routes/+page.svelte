@@ -225,11 +225,12 @@
     Load
   </NavigationButton>
   <NavigationDivider />
-  <NavigationButton
-    icon={NavIconExperiments}
-    on:click={() => openModal("experiments")}
-  >
+  <NavigationButton icon={NavIconExperiments} on:click={() => openModal("experiments")}>
     Experiments
+  </NavigationButton>
+  <NavigationDivider />
+  <NavigationButton on:click={() => window.open("https://discord.gg/NeYug9v2hq", '_blank')}>
+    Discord
   </NavigationButton>
 </NavigationBar>
 <div id="main">
