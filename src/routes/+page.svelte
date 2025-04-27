@@ -188,10 +188,12 @@
     });
 
     addEventListener('beforeunload', event => {
-      if (workspace.getAllBlocks().length > 0) {
-        event.preventDefault();
-        event.returnValue = true;
-      }
+      try {
+        if (workspace.getAllBlocks().length > 0) {
+          event.preventDefault();
+          event.returnValue = true;
+        }
+      } catch {}
     })
 
     let newconfig = localStorage.getItem('localConfig')

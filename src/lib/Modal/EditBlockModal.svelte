@@ -1,5 +1,6 @@
 <script>
     import Modal from "./Modal.svelte";
+    import util from "../../resources/util";
 
     let id = "editblock";
 
@@ -73,6 +74,7 @@
                     <th>Type</th>
                     <th>Text</th>
                     <th><!-- options --></th>
+                    <th><!-- buttons --></th>
                 </tr>
                 {#each Object.keys(data.tempBlock ? data.tempBlock.fields : {}) as i}
                     <tr>
@@ -94,12 +96,28 @@
                             }} />
                         </td>
                         <td></td>
+                        <td>
+                            <button on:click={() => {
+                                data.tempBlock.fields.splice(i, 1)
+                                updateBlocks()
+                            }}>Delete</button>
+                        </td>
                     </tr>
                 {/each}
             </table>
         </div>
         <div class="bottom">
             <!--<button on:click={() => saveBlock(data)}>Save</button>-->
+            <button on:click={() => {
+                data.tempBlock.fields.push({
+                    type: "label",
+                    text: "text",
+                    id: util.randomHex(16)
+                })
+                window.blocks[data.blockId] = data.tempBlock
+                data.update()
+                updateBlocks()
+            }}>Add field</button>
         </div>
     </div>
 </Modal>
@@ -125,14 +143,18 @@
         width: 100%;
     }
 
-    .fields th:nth-child(1) {
+    .fields tr > *:nth-child(1) {
         width: 20%;
     }
-    .fields th:nth-child(2) {
+    .fields tr > *:nth-child(2) {
         width: 30%;
     }
-    .fields th:nth-child(3) {
-        width: 50%;
+    .fields tr > *:nth-child(4) {
+        float: right;
+    }
+
+    :is(input, select):only-child {
+        width: 100%;
     }
 
     .bottom {

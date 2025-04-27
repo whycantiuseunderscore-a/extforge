@@ -57,6 +57,7 @@ function register() {
                         reporter.blockId_ = this.blockId_
                         reporter.fieldId_ = field.id
                         reporter.setShadow(true)
+                        reporter.updateShape_()
                         reporter.initSvg()
                         reporter.render()
                         reporter.outputConnection.connect(input.connection)
@@ -146,7 +147,7 @@ function register() {
     );
 
     registerBlock(`${categoryPrefix}execute`, {
-        message0: 'block preview',
+        message0: 'block preview (not finished)',
         inputsInline: true,
         colour: categoryColor
     }, (block) => {

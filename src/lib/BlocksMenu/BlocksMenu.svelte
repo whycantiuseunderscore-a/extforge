@@ -26,10 +26,7 @@
             fields: [
                 {
                     type: "label",
-                    text: "block"
-                }, {
-                    type: "string",
-                    text: "reporter",
+                    text: "block",
                     id: util.randomHex(16)
                 }
             ]
