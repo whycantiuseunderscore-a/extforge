@@ -51,6 +51,7 @@ function register() {
                         break;
                     case "string":
                     case "number":
+                    case "boolean":
                         let input = this.appendValueInput(`INPUT${i}`)
                         let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
                         reporter.blockId_ = this.blockId_
@@ -131,6 +132,8 @@ function register() {
                     case "boolean":
                         this.setOutput(true, "Boolean")
                         break
+                    default:
+                        this.setOutput(true, null)
                 }
             } else {
                 this.setOutput(true, null)
