@@ -116,7 +116,7 @@ class Compiler {
                         }
                         case 'boolean': {
                             return [v.id, {
-                                type: "boolean"
+                                type: "Boolean"
                             }]
                         }
                     }
