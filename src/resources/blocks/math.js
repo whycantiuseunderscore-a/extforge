@@ -213,7 +213,9 @@ function register() {
                 "name": "CHOICE",
                 "options": [
                     ["pi", "Math.PI"],
-                    ["e", "Math.E"]
+                    ["e", "Math.E"],
+                    ["tau", "Math.PI * 2"],
+                    ["phi", "(1 + Math.sqrt(5)) / 2"]
                 ]
             }
         ],
