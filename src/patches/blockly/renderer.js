@@ -101,9 +101,11 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
             checks = connection.targetConnection.getCheck();
         }
         if (connection.type == Blockly.ConnectionType.INPUT_VALUE || connection.type == Blockly.ConnectionType.OUTPUT_VALUE) {
-            if (checks && checks.includes('List')) {
+            if (checks && checks.length > 1) {
+                return this.ROUNDED;
+            } else if (checks && checks.includes('List')) {
                 return this.PLUS;
-            } else if (checks && checks.includes('String') && checks.length == 1) {
+            } else if (checks && checks.includes('String')) {
                 return this.SQUARED;
             }
         }

@@ -36,7 +36,12 @@
         },
     };
 
-    function updateBlocks() {
+    function updateBlocks(data) {
+        previewBlock.blockId_ = data.blockId
+        previewBlock.updateShape_()
+        previewBlock.initSvg();
+        previewBlock.render();
+
         //refresh workspace
         try {
             let workspace = window.workspace
@@ -50,16 +55,13 @@
     function saveBlock(data) {
         data.toggle()
         window.blocks[data.blockId] = data.tempBlock
-        updateBlocks()
+        updateBlocks(data)
     }
 
+    let previewBlock
+
     onMount(() => {
-        /** @type {Blockly.BlockSvg} */
-        let previewBlock = workspace.newBlock("blocks_execute");
-        //previewBlock.blockId_ = id
-        //previewBlock.updateShape_()
-        previewBlock.initSvg();
-        previewBlock.render();
+        previewBlock = workspace.newBlock("blocks_execute");
     });
 </script>
 
@@ -81,7 +83,8 @@
                         <td>
                             <select value={data.tempBlock.fields[i].type} on:change={(e) => {
                                 data.tempBlock.fields[i].type = e.target.value
-                                updateBlocks()
+                                data.update()
+                                updateBlocks(data)
                             }}>
                                 <option value="label">Label</option>
                                 <option value="string">String</option>
@@ -92,7 +95,8 @@
                         <td>
                             <input type="text" value={data.tempBlock.fields[i].text} on:change={(e) => {
                                 data.tempBlock.fields[i].text = e.target.value
-                                updateBlocks()
+                                data.update()
+                                updateBlocks(data)
                             }} />
                         </td>
                         <td></td>
@@ -100,7 +104,7 @@
                             <button on:click={() => {
                                 data.tempBlock.fields.splice(i, 1)
                                 data.update()
-                                updateBlocks()
+                                updateBlocks(data)
                             }}>Delete</button>
                         </td>
                     </tr>
@@ -116,11 +120,12 @@
                     id: util.randomHex(16)
                 })
                 data.update()
-                updateBlocks()
+                updateBlocks(data)
             }}>Add field</button>
             <select value={(data.tempBlock ?? {}).type} on:change={(e) => {
                 data.tempBlock.type = e.target.value
-                updateBlocks()
+                data.update()
+                updateBlocks(data)
             }}>
                 <option value="command">Command</option>
                 <option value="reporter">Reporter</option>

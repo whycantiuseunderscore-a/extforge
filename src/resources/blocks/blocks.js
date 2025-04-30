@@ -147,12 +147,87 @@ function register() {
     );
 
     registerBlock(`${categoryPrefix}execute`, {
-        message0: 'block preview (not finished)',
+        message0: '',
         inputsInline: true,
-        colour: categoryColor
+        colour: categoryColor,
+        mutator: `${categoryPrefix}execute_mutator`
     }, (block) => {
         return ''
     })
+    /** @type {Blockly.Block} */
+    const executeMutator = {
+        blockId_: "",
+
+        mutationToDom: function () {
+            var container = Blockly.utils.xml.createElement('mutation');
+            container.setAttribute('blockId', this.blockId_);
+            return container;
+        },
+
+        domToMutation: function (xmlElement) {
+            this.blockId_ = xmlElement.getAttribute('blockId') ?? "";
+            this.updateShape_();
+        },
+
+        updateShape_: function() {
+            for (let i = 0; this.removeInput(`INPUT${i}`, true); i++) {}
+
+            console.log(this.blockId_)
+            let block = window.blocks[this.blockId_]
+            if (!block) return
+
+            this.setOutput(false)
+            this.setPreviousStatement(false)
+            this.setNextStatement(false)
+
+            switch (block.type) {
+                case "command": {
+                    this.setPreviousStatement(true, null)
+                    this.setNextStatement(true, null)
+                    break
+                }
+                case "reporter": {
+                    this.setOutput(true, ["String", "Number", "Boolean"])
+                    break
+                }
+                case "Boolean": {
+                    this.setOutput(true, "Boolean")
+                    break
+                }
+            }
+            
+            /*let i = 0
+            for (let field of block.fields) {
+                switch (field.type) {
+                    case "label":
+                        this.appendDummyInput(`INPUT${i}`)
+                            .appendField(field.text)
+                        break;
+                    case "string":
+                    case "number":
+                    case "boolean":
+                        let input = this.appendValueInput(`INPUT${i}`)
+                        let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
+                        reporter.blockId_ = this.blockId_
+                        reporter.fieldId_ = field.id
+                        reporter.setShadow(true)
+                        reporter.updateShape_()
+                        reporter.initSvg()
+                        reporter.render()
+                        reporter.outputConnection.connect(input.connection)
+                        break
+                }
+
+                this.moveInputBefore(`INPUT${i}`, `BLOCKS`)
+
+                i++
+            }*/
+        }
+    }
+    registerMutator(
+        `${categoryPrefix}execute_mutator`,
+        executeMutator
+    );
 }
 
 export default register
