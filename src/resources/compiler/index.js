@@ -102,6 +102,7 @@ class Compiler {
             return {
                 opcode: `block_${id}`,
                 text: util.blockToExtensionText(block.fields),
+                blockType: block.type,
                 arguments: Object.fromEntries(block.fields.filter(v => v.type !== 'label').map(v => {
                     switch (v.type) {
                         case 'string': {

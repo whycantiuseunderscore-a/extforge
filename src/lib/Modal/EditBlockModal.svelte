@@ -118,6 +118,14 @@
                 data.update()
                 updateBlocks()
             }}>Add field</button>
+            <select value={(data.tempBlock ?? {}).type} on:change={(e) => {
+                data.tempBlock.type = e.target.value
+                updateBlocks()
+            }}>
+                <option value="command">Command</option>
+                <option value="reporter">Reporter</option>
+                <option value="Boolean">Boolean</option>
+            </select>
         </div>
     </div>
 </Modal>
