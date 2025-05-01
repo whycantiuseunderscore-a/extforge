@@ -62,6 +62,12 @@
 
     onMount(() => {
         previewBlock = workspace.newBlock("blocks_execute");
+
+        const old = window.modals[id].update
+        window.modals[id].update = function() {
+            old.call(this)
+            updateBlocks(window.modals[id])
+        }
     });
 </script>
 

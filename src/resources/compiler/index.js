@@ -74,11 +74,12 @@ class Compiler {
             bottom: [
                 `}`,
                 ``,
+                `let extension = new Extension();`,
                 `// code compiled from extforge`
             ]
         }
         const footerCode = [
-            `Scratch.extensions.register(new Extension());`,
+            `Scratch.extensions.register(extension);`,
             `})(Scratch);`
         ];
 

@@ -114,8 +114,8 @@
             </value>
         </block>
     </category>
-    <category name="Blocks" colour="#b6f">
-        
+    <category name="Blocks" colour="#b6f" custom="blocks">
+        <!-- resources/categories/blocks.js -->
     </category>
 
     <sep />

@@ -52,7 +52,7 @@ function register() {
                     case "string":
                     case "number":
                     case "boolean":
-                        let input = this.appendValueInput(`INPUT${i}`)
+                        var input = this.appendValueInput(`INPUT${i}`)
                         let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
                         reporter.blockId_ = this.blockId_
                         reporter.fieldId_ = field.id
@@ -152,7 +152,18 @@ function register() {
         colour: categoryColor,
         mutator: `${categoryPrefix}execute_mutator`
     }, (block) => {
-        return ''
+        let b = window.blocks[block.blockId_]
+        if (!b) return "()"
+
+        let object = []
+        for (let i = 0; block.getInput(`INPUT${i}`); i++) {
+            let field = b.fields[i]
+            if (field.type !== "label") {
+                object.push(`"${field.id}": ${javascriptGenerator.valueToCode(block, `INPUT${i}`)}`)
+            }
+        }
+
+        return `extension["block_${block.blockId_}"]({${object.join(", ")}})`
     })
     /** @type {Blockly.Block} */
     const executeMutator = {
@@ -196,7 +207,7 @@ function register() {
                 }
             }
             
-            /*let i = 0
+            let i = 0
             for (let field of block.fields) {
                 switch (field.type) {
                     case "label":
@@ -204,24 +215,31 @@ function register() {
                             .appendField(field.text)
                         break;
                     case "string":
+                        var input = this.appendValueInput(`INPUT${i}`)
+                        input.setCheck("String")
+                        var inputInside = this.workspace.newBlock('generic_text')
+                        inputInside.setShadow(true)
+                        inputInside.initSvg()
+                        inputInside.render()
+                        inputInside.outputConnection.connect(input.connection)
+                        break
                     case "number":
+                        var input = this.appendValueInput(`INPUT${i}`)
+                        input.setCheck("Number")
+                        var inputInside = this.workspace.newBlock('generic_number')
+                        inputInside.setShadow(true)
+                        inputInside.initSvg()
+                        inputInside.render()
+                        inputInside.outputConnection.connect(input.connection)
+                        break
                     case "boolean":
-                        let input = this.appendValueInput(`INPUT${i}`)
-                        let reporter = this.workspace.newBlock(`${categoryPrefix}input`)
-                        reporter.blockId_ = this.blockId_
-                        reporter.fieldId_ = field.id
-                        reporter.setShadow(true)
-                        reporter.updateShape_()
-                        reporter.initSvg()
-                        reporter.render()
-                        reporter.outputConnection.connect(input.connection)
+                        var input = this.appendValueInput(`INPUT${i}`)
+                        input.setCheck("Boolean")
                         break
                 }
 
-                this.moveInputBefore(`INPUT${i}`, `BLOCKS`)
-
                 i++
-            }*/
+            }
         }
     }
     registerMutator(
