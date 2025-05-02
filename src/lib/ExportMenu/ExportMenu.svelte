@@ -22,7 +22,7 @@
         </div>
         <div class="horiz">
             <button on:click={copyCode}>Copy</button>
-            <button on:click={testCode}>Test</button>
+            <!--<button on:click={testCode}>Test</button>-->
         </div>
         <b style:color="red">Make sure to run the extension unsandboxed.</b>
     </div>
