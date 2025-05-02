@@ -95,17 +95,15 @@ export default function (Blockly) {
         var newBlock = null;
         Blockly.Events.disable();
         try {
-            // Note: targetBlock_ should have no children.  If it has children we would
-            // need to update shadow block IDs to avoid problems in the VM.
-            // Resizes will be reenabled at the end of the drag.
             this.startWorkspace_.setResizesEnabled(false);
             var xmlBlock = Blockly.Xml.blockToDom(this.targetBlock_);
             newBlock = Blockly.Xml.domToBlock(xmlBlock, this.startWorkspace_);
 
-            // Move the duplicate to original position.
             var xy = this.targetBlock_.getRelativeToSurfaceXY();
             newBlock.moveBy(xy.x, xy.y);
             newBlock.setShadow(false);
+            newBlock.initSvg();
+            newBlock.render();
         } finally {
             Blockly.Events.enable();
         }

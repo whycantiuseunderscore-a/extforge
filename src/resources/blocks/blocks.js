@@ -163,7 +163,7 @@ function register() {
             }
         }
 
-        return `extension["block_${block.blockId_}"]({${object.join(", ")}})`
+        return `await extension["block_${block.blockId_}"]({${object.join(", ")}})`
     })
     /** @type {Blockly.Block} */
     const executeMutator = {
@@ -183,7 +183,6 @@ function register() {
         updateShape_: function() {
             for (let i = 0; this.removeInput(`INPUT${i}`, true); i++) {}
 
-            console.log(this.blockId_)
             let block = window.blocks[this.blockId_]
             if (!block) return
 
@@ -246,6 +245,26 @@ function register() {
         `${categoryPrefix}execute_mutator`,
         executeMutator
     );
+
+
+    registerBlock(`${categoryPrefix}return`, {
+        message0: 'return %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "X",
+                "check": null,
+                "text": "0",
+                "acceptsBlocks": true
+            }
+        ],
+        previousStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        let X = javascriptGenerator.valueToCode(block, 'X')
+        return `return (${X})`
+    })
 }
 
 export default register
