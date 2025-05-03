@@ -1,10 +1,14 @@
 <script>
+    import beautify from "js-beautify";
     import CodePreview from "$lib/CodePreview/CodePreview.svelte";
 
     export let code
 
     function copyCode() {
-        navigator.clipboard.writeText(code)
+        navigator.clipboard.writeText(beautify.js(code, {
+            indent_size: 4,
+            space_in_empty_paren: true,
+        }))
     }
 
     function testCode() {
