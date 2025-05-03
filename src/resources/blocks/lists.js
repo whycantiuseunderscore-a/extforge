@@ -85,12 +85,38 @@ function register() {
             }
         ],
         inputsInline: true,
-        output: null,
+        output: "Number",
         colour: categoryColor,
     }, (block) => {
         const VALUE = javascriptGenerator.valueToCode(block, 'VALUE')
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
         const code = `(${INPUT}.indexOf(${VALUE})+1)`;
+        return [`${code}`, 0];
+    })
+    
+    registerBlock(`${categoryPrefix}contains`, {
+        message0: '%1 contains %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "INPUT",
+                "check": "List"
+            },
+            {
+                "type": "field_input",
+                "name": "VALUE",
+                "check": null,
+                "value": "",
+                "acceptsBlocks": true
+            },
+        ],
+        inputsInline: true,
+        output: "Boolean",
+        colour: categoryColor,
+    }, (block) => {
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE')
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
+        const code = `(${INPUT}.includes(${VALUE}))`;
         return [`${code}`, 0];
     })
     

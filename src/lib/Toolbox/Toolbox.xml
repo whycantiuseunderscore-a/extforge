@@ -103,6 +103,7 @@
         <block type="lists_get" />
         <block type="lists_index" />
         <block type="lists_length" />
+        <block type="lists_contains" />
         <sep gap="48"></sep>
         <block type="lists_set" />
         <block type="lists_join" />
