@@ -64,9 +64,36 @@ function register() {
     }, (block) => {
         const INDEX = javascriptGenerator.valueToCode(block, 'INDEX')
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
-        const code = `(${INPUT}[${INDEX}])`;
+        const code = `(${INPUT}[${INDEX}-1])`;
         return [`${code}`, 0];
     })
+    
+    registerBlock(`${categoryPrefix}index`, {
+        message0: 'index of %1 in %2',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "VALUE",
+                "check": null,
+                "value": "",
+                "acceptsBlocks": true
+            },
+            {
+                "type": "input_value",
+                "name": "INPUT",
+                "check": "List"
+            }
+        ],
+        inputsInline: true,
+        output: null,
+        colour: categoryColor,
+    }, (block) => {
+        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE')
+        const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
+        const code = `(${INPUT}.indexOf(${VALUE})+1)`;
+        return [`${code}`, 0];
+    })
+    
     registerBlock(`${categoryPrefix}set`, {
         message0: 'set item %1 of %2 to %3',
         args0: [
@@ -97,7 +124,7 @@ function register() {
         const INDEX = javascriptGenerator.valueToCode(block, 'INDEX')
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
         const TEXT = javascriptGenerator.valueToCode(block, 'TEXT')
-        const code = `ExtForge.Utils.setList(${INPUT}, ${INDEX}, ${TEXT})`;
+        const code = `ExtForge.Utils.setList(${INPUT}, ${INDEX}-1, ${TEXT})`;
         return [`${code}`, 0];
     })
     
@@ -222,7 +249,7 @@ function register() {
         canDragDuplicate: true,
         colour: categoryColor
     }, (block) => {
-        const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.index.length] ?? 0`
+        const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.index.length]+1 ?? 0`
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}foreachvalue`, {

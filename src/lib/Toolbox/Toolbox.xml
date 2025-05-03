@@ -101,6 +101,7 @@
         </block>
         <sep gap="48"></sep>
         <block type="lists_get" />
+        <block type="lists_index" />
         <block type="lists_length" />
         <sep gap="48"></sep>
         <block type="lists_set" />

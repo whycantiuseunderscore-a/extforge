@@ -32,7 +32,7 @@ const ExtForge = {
 
     Utils: {
         setList: (list, index, value) => {
-            list[index] = value;
+            [...list][index] = value;
             return list;
         },
         lists_foreach: {
