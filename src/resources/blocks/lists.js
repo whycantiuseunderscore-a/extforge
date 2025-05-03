@@ -96,8 +96,8 @@ function register() {
     }, (block) => {
         const INDEX = javascriptGenerator.valueToCode(block, 'INDEX')
         const INPUT = javascriptGenerator.valueToCode(block, 'INPUT')
-        const VALUE = javascriptGenerator.valueToCode(block, 'VALUE')
-        const code = `ExtForge.Utils.setList(${INPUT}, ${INDEX}, ${VALUE})`;
+        const TEXT = javascriptGenerator.valueToCode(block, 'TEXT')
+        const code = `ExtForge.Utils.setList(${INPUT}, ${INDEX}, ${TEXT})`;
         return [`${code}`, 0];
     })
     
