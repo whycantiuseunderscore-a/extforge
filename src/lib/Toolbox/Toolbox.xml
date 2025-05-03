@@ -151,6 +151,8 @@
         <sep gap="48"></sep>
         <block type="runtime_frameset" />
         <block type="runtime_frameget" />
+        <sep gap="48"></sep>
+        <block type="runtime_broadcast" />
     </category>
     <category name="Browser" colour="#9d5">
         <block type="script_evalb" />

@@ -141,7 +141,7 @@ function register() {
     })
 
     registerBlock(`${categoryPrefix}timer`, {
-        message0: 'seconds since started',
+        message0: 'project timer',
         args0: [],
         output: "Number",
         inputsInline: true,
@@ -149,6 +149,27 @@ function register() {
     }, (block) => {
         const code = `Scratch.vm.runtime.ioDevices.clock.projectTimer()`;
         return [`${code}`, 0];
+    })
+
+    registerBlock(`${categoryPrefix}broadcast`, {
+        message0: 'broadcast project %1',
+        args0: [
+            {
+                "type": "field_input",
+                "name": "NAME",
+                "text": "broadcast1",
+                "acceptsBlocks": true,
+                "check": "String"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        let NAME = javascriptGenerator.valueToCode(block, 'NAME');
+
+        return `Scratch.vm.runtime.startHats("event_whenbroadcastreceived", {BROADCAST_OPTION: ${NAME}})`;
     })
 }
 
