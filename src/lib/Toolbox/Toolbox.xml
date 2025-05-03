@@ -25,6 +25,8 @@
         <block type="control_if">
             <mutation else="1" />
         </block>
+        <sep gap="48"></sep>
+        <block type="control_repeat" />
         <block type="control_while" />
         <sep gap="48"></sep>
         <block type="control_return" />

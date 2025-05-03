@@ -153,6 +153,36 @@ function register() {
         return `${code}\n`;
     })
 
+    registerBlock(`${categoryPrefix}repeat`, {
+        message0: 'repeat %1 %2 %3',
+        args0: [
+            {
+                "type": "field_number",
+                "name": "AMT",
+                "check": "Number",
+                "value": 10,
+                "acceptsBlocks": true
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const AMT = javascriptGenerator.valueToCode(block, 'AMT');
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const varName = "temp_"+util.randomHex(24)
+        const code = `for (var ${varName} = 0; ${varName} < ${AMT}; ${varName}++) { ${BLOCKS} };`
+        return `${code}\n`;
+    })
+
     registerBlock(`${categoryPrefix}return`, {
         message0: 'return %1',
         args0: [
