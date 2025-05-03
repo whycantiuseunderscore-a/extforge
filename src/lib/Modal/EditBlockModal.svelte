@@ -41,13 +41,16 @@
         previewBlock.updateShape_()
         previewBlock.initSvg();
         previewBlock.render();
+        requestAnimationFrame(() => {
+            workspace.centerOnBlock(previewBlock.id)
+        })
 
         //refresh workspace
         try {
-            let workspace = window.workspace
-            let xml = Blockly.Xml.workspaceToDom(workspace);
-            workspace.clear();
-            Blockly.Xml.domToWorkspace(xml, workspace);
+            let workspaceG = window.workspace
+            let xml = Blockly.Xml.workspaceToDom(workspaceG);
+            workspaceG.clear();
+            Blockly.Xml.domToWorkspace(xml, workspaceG);
             this.refreshToolboxSelection();
         } catch {}
     }
@@ -68,6 +71,10 @@
             old.call(this)
             updateBlocks(window.modals[id])
         }
+
+        addEventListener("resize", ev => {
+            workspace.centerOnBlock(previewBlock.id)
+        })
     });
 </script>
 
