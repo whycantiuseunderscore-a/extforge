@@ -255,15 +255,17 @@ function register() {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const varlistname = "temp_"+util.randomHex(24)
         const varindexname = "temp_"+util.randomHex(24)
+        const vardepthname = "temp_"+util.randomHex(24)
         const code = 
        `var ${varlistname} = ${LIST};
+        ExtForge.Utils.lists_foreach.depth += 1;
+        var ${vardepthname} = ExtForge.Utils.lists_foreach.depth;
         for (var ${varindexname} in ${varlistname}) {
-            ExtForge.Utils.lists_foreach.index.push(${varindexname});
-            ExtForge.Utils.lists_foreach.value.push(${varlistname}[${varindexname}]);
+            ExtForge.Utils.lists_foreach.index[${vardepthname}] = ${varindexname};
+            ExtForge.Utils.lists_foreach.value[${vardepthname}] = ${varlistname}[${varindexname}];
             ${BLOCKS}
         };
-        ExtForge.Utils.lists_foreach.index.pop();
-        ExtForge.Utils.lists_foreach.value.pop();
+        ExtForge.Utils.lists_foreach.depth -= 1;
         `
         return `${code}\n`;
     })
@@ -275,7 +277,7 @@ function register() {
         canDragDuplicate: true,
         colour: categoryColor
     }, (block) => {
-        const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.index.length]+1 ?? 0`
+        const code = `ExtForge.Utils.lists_foreach.index[ExtForge.Utils.lists_foreach.depth]`
         return [`${code}`, 0];
     })
     registerBlock(`${categoryPrefix}foreachvalue`, {
@@ -286,7 +288,7 @@ function register() {
         canDragDuplicate: true,
         colour: categoryColor
     }, (block) => {
-        const code = `ExtForge.Utils.lists_foreach.value[ExtForge.Utils.lists_foreach.index.value]`
+        const code = `ExtForge.Utils.lists_foreach.value[ExtForge.Utils.lists_foreach.depth]`
         return [`${code}`, 0];
     })
 
