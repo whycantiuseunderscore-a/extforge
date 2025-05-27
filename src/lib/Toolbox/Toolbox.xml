@@ -81,6 +81,9 @@
         <sep gap="48"></sep>
         <block type="strings_log" />
     </category>
+    <category name="Vectors" colour="#6cd">
+        <block type="vector_create" />
+    </category>
     <category name="Inputs" colour="#69d">
         <block type="inputs_keypress" />
         <block type="inputs_keyspressed" />

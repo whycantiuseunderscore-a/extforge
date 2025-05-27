@@ -30,6 +30,28 @@ const ExtForge = {
         }
     },
 
+    Vector: class {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        static from(v) {
+            if (v instanceof ExtForge.Vector) return v
+            if (v instanceof Array) return new ExtForge.Vector(Number(v[0]), Number(v[1]))
+            if (v instanceof Object) return new ExtForge.Vector(Number(v.x), Number(v.y))
+            return new ExtForge.Vector()
+        }
+
+        add(v) {
+            return new Vector(this.x + v.x, this.y + v.y);
+        }
+
+        set(x, y) {
+            return new Vector(x ?? this.x, y ?? this.y)
+        }
+    }
+
     Utils: {
         setList: (list, index, value) => {
             [...list][index] = value;

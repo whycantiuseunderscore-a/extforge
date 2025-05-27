@@ -18,14 +18,14 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
         this.ADD_START_HATS = true
         
         this.PLUS = this.makePlus()
+        this.LEAF = this.makeLeaf()
     }
 
     /** @returns {import("blockly/core/renderers/common/constants").Shape} */
     makePlus() {
         const radius = this.CORNER_RADIUS
 
-        function makeMainPath(
-            blockHeight, up, right) {
+        function makeMainPath(blockHeight, up, right) {
             return (
                 svgPaths.arc(
                     'a', '0 0,1', radius,
@@ -95,6 +95,58 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
         };
     }
 
+    /** @returns {import("blockly/core/renderers/common/constants").Shape} */
+    makeLeaf() {
+        const maxWidth = this.MAX_DYNAMIC_CONNECTION_SHAPE_WIDTH;
+        const maxHeight = maxWidth * 2;
+
+        const makeMainPath = (blockHeight, up, right) => {
+            const remainingHeight =
+            blockHeight > maxHeight ? blockHeight - maxHeight : 0;
+            const height = blockHeight > maxHeight ? maxHeight : blockHeight;
+            const radius = height / 2;
+            return svgPaths.arc(
+                       'a', '0 0,1', radius,
+                       svgPaths.point(
+                           (up ? -1 : 1) * radius, (up ? -1 : 1) * radius)) +
+                svgPaths.lineOnAxis('v', (right ? 1 : -1) * (remainingHeight + radius - this.CORNER_RADIUS)) +
+                svgPaths.arc(
+                    'a', '0 0,1', this.CORNER_RADIUS,
+                    svgPaths.point((up ? 1 : -1) * this.CORNER_RADIUS, (up ? -1 : 1) * this.CORNER_RADIUS)) +
+                svgPaths.lineOnAxis('h', (right ? -1 : 1) * (radius - this.CORNER_RADIUS));
+        }
+
+        return {
+            type: this.SHAPES.SQUARE,
+            isDynamic: true,
+            width(height) {
+                const halfHeight = height / 2;
+                return halfHeight > maxWidth ? maxWidth : halfHeight;
+            },
+            height(height) {
+                return height;
+            },
+            connectionOffsetY(connectionHeight) {
+                return connectionHeight / 2;
+            },
+            connectionOffsetX(connectionWidth) {
+                return -connectionWidth;
+            },
+            pathDown(height) {
+                return makeMainPath(height, false, false);
+            },
+            pathUp(height) {
+                return makeMainPath(height, true, false);
+            },
+            pathRightDown(height) {
+                return makeMainPath(height, false, true);
+            },
+            pathRightUp(height) {
+                return makeMainPath(height, false, true);
+            },
+        };
+    }
+
     shapeFor(connection) {
         let checks = connection.getCheck();
         if (!checks && connection.targetConnection) {
@@ -103,6 +155,8 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
         if (connection.type == Blockly.ConnectionType.INPUT_VALUE || connection.type == Blockly.ConnectionType.OUTPUT_VALUE) {
             if (checks && checks.length > 1) {
                 return this.ROUNDED;
+            } else if (checks && checks.includes('Vector')) {
+                return this.LEAF;
             } else if (checks && checks.includes('List')) {
                 return this.PLUS;
             } else if (checks && checks.includes('String')) {

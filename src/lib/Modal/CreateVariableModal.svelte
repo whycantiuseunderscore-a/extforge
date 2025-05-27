@@ -29,6 +29,7 @@
             <option value="Number">Number</option>
             <option value="Boolean">Boolean</option>
             <option value="List">List</option>
+            <option value="Vector">Vector</option>
         </select>
         <button class="btn" on:click={() => {register(data)}}>Register</button>
     </div>
