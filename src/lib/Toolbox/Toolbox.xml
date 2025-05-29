@@ -83,6 +83,9 @@
     </category>
     <category name="Vectors" colour="#6cd">
         <block type="vector_create" />
+        <sep gap="48"></sep>
+        <block type="vector_x" />
+        <block type="vector_y" />
     </category>
     <category name="Inputs" colour="#69d">
         <block type="inputs_keypress" />

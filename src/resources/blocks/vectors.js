@@ -33,6 +33,42 @@ function register() {
         const code = `new ExtForge.Vector(${X}, ${Y})`;
         return code;
     })
+
+    registerBlock(`${categoryPrefix}x`, {
+        message0: '%1 x',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "VEC",
+                "check": "Vector"
+            },
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const VEC = javascriptGenerator.valueToCode(block, 'VEC');
+        const code = `(${VEC}).x`;
+        return code;
+    })
+
+    registerBlock(`${categoryPrefix}y`, {
+        message0: '%1 y',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "VEC",
+                "check": "Vector"
+            },
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const VEC = javascriptGenerator.valueToCode(block, 'VEC');
+        const code = `(${VEC}).y`;
+        return code;
+    })
 }
 
 export default register;
